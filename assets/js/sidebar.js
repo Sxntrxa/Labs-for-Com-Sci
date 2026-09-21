@@ -111,7 +111,8 @@ const sidebarCategories = [
     {
         title: "📝 ระบบฝึกสอบ (Exam)",
         items: [
-            { title: "ทดสอบ Pseudocode", url: "exam_pseudocode.html" }
+            { title: "ทดสอบ Pseudocode", url: "exam_pseudocode.html" },
+            { title: "ระบบฝึกสอบปรนัย (MCQ)", url: "exam_mcq.html" }
         ]
     }
 ];
