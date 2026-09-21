@@ -677,7 +677,11 @@ End`;
                 }
                 
                 // 2. 2D Array accesses: A[i, 0] -> A[i][0]
-                line = line.replace(/\[\s*([^,\]]+)\s*,\s*([^\]]+)\s*\]/g, "[$1][$2]");
+                line = line.replace(/\[(.*?)\]/g, (match, inner) => {
+                    if (inner.includes(',')) return "[" + inner.split(',').map(s => s.trim()).join('][') + "]";
+                    if (inner.includes('，')) return "[" + inner.split('，').map(s => s.trim()).join('][') + "]";
+                    return match;
+                });
                 
                 // 3. If without Then
                 if (lowerLine.startsWith('if ') && !lowerLine.match(/\bthen$/i)) {
