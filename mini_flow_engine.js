@@ -178,7 +178,8 @@
             // Join and re-split to flatten any newly created lines
             return lines.join('\n');
         }
-\n        async function executeProgram() {
+
+        async function executeProgram() {
             const rawCode = document.getElementById('code').value;
             const codeLines = preprocessTeacherSyntax(rawCode).split('\n');
             outputDiv.innerHTML = '<div class="sys-msg">Starting execution...<br>------------------------</div>';

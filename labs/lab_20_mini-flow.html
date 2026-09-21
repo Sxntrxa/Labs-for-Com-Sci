@@ -622,7 +622,8 @@ End`;
             }
             return lines.join('\n');
         }
-\n        async function executeProgram() {
+
+        async function executeProgram() {
             const rawCode = document.getElementById('code').value;
             const codeLines = preprocessTeacherSyntax(rawCode).split('\n');
             outputDiv.innerHTML = '<div class="text-center text-xs text-slate-400 my-2">เริ่มการทำงาน...</div>';
