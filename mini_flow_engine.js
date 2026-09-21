@@ -179,7 +179,8 @@
             return lines.join('\n');
         }
 \n        async function executeProgram() {
-            const codeLines = document.getElementById('code').value.split('\n');
+            const rawCode = document.getElementById('code').value;
+            const codeLines = preprocessTeacherSyntax(rawCode).split('\n');
             outputDiv.innerHTML = '<div class="sys-msg">Starting execution...<br>------------------------</div>';
             
             let memory = { __for: {} }; 
