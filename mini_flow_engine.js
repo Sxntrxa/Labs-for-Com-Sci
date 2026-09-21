@@ -103,7 +103,78 @@
             return jumps;
         }
 
-        async function executeProgram() {
+        
+        function preprocessTeacherSyntax(code) {
+            let lines = code.split('\n');
+            let blockStack = [];
+            
+            for (let i = 0; i < lines.length; i++) {
+                let originalLine = lines[i];
+                let line = originalLine.trim();
+                if (!line) continue;
+                
+                let lowerLine = line.toLowerCase();
+                let indentMatch = originalLine.match(/^(\s*)/);
+                let indent = indentMatch ? indentMatch[1] : "";
+                
+                // 1. Array Declarations: Declare Integer Array A[10, 10] -> Declare Integer A[10][10]
+                if (lowerLine.startsWith('declare ')) {
+                    line = line.replace(/Declare\s+(Integer|Real|String|Boolean)\s+Array\s+/i, "Declare $1 ");
+                }
+                
+                // 2. 2D Array accesses: A[i, 0] -> A[i][0]
+                line = line.replace(/\[\s*([^,\]]+)\s*,\s*([^\]]+)\s*\]/g, "[$1][$2]");
+                
+                // 3. If without Then
+                if (lowerLine.startsWith('if ') && !lowerLine.match(/\bthen$/i)) {
+                    line = line + " Then";
+                }
+                
+                // 4. Block Tracking
+                if (lowerLine.startsWith('if ')) {
+                    blockStack.push('if');
+                } else if (lowerLine.startsWith('for ')) {
+                    blockStack.push('for');
+                } else if (lowerLine.startsWith('while ')) {
+                    blockStack.push('while');
+                } else if (lowerLine === 'do') {
+                    blockStack.push('do');
+                }
+                // Teacher's Loop...Do
+                else if (lowerLine.startsWith('loop ') && !lowerLine.startsWith('loop while')) {
+                    let rest = line.substring(4).trim();
+                    line = "Do\n" + indent + rest;
+                    blockStack.push('loopdo');
+                } else if (lowerLine === 'loop') {
+                    line = "Do";
+                    blockStack.push('loopdo');
+                }
+                else if (lowerLine.startsWith('do ') && blockStack[blockStack.length - 1] === 'loopdo') {
+                    let rest = line.substring(2).trim();
+                    line = "Loop While " + rest;
+                    blockStack.pop();
+                }
+                // 5. Universal 'End'
+                else if (lowerLine === 'end') {
+                    if (blockStack.length > 0) {
+                        let top = blockStack.pop();
+                        if (top === 'if') line = "End If";
+                        else if (top === 'for') line = "End For";
+                        else if (top === 'while') line = "End While";
+                        else if (top === 'do' || top === 'loopdo') line = "Loop";
+                    }
+                }
+                else if (lowerLine === 'end if' && blockStack[blockStack.length - 1] === 'if') blockStack.pop();
+                else if (lowerLine === 'end for' && blockStack[blockStack.length - 1] === 'for') blockStack.pop();
+                else if (lowerLine === 'end while' && blockStack[blockStack.length - 1] === 'while') blockStack.pop();
+                
+                // Handle split lines properly
+                lines[i] = line.split('\n').map((l, idx) => idx === 0 ? indent + l : l).join('\n');
+            }
+            // Join and re-split to flatten any newly created lines
+            return lines.join('\n');
+        }
+\n        async function executeProgram() {
             const codeLines = document.getElementById('code').value.split('\n');
             outputDiv.innerHTML = '<div class="sys-msg">Starting execution...<br>------------------------</div>';
             
