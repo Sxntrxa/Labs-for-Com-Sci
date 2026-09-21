@@ -155,7 +155,7 @@
                 }
                 else if (lowerLine.startsWith('do ') && blockStack[blockStack.length - 1] === 'loopdo') {
                     let rest = line.substring(2).trim();
-                    line = "Loop While " + rest;
+                    line = "Loop " + rest;
                     blockStack.pop();
                 }
                 // 5. Universal 'End'
