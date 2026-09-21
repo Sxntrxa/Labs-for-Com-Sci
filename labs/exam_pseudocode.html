@@ -429,7 +429,7 @@ Assign arr[0] = 5</pre>
                     else if (lower.startsWith('declare ')) boxClass = 'box-declare';
                     else if (lower.startsWith('input ')) boxClass = 'box-input';
                     else if (lower.startsWith('output ')) boxClass = 'box-output';
-                    else if (lower === 'do' || lower.startsWith('loop ') || lower.startsWith('for ') || lower.startsWith('while ') || lower === 'end while' || lower === 'end for') boxClass = 'box-loop';
+                    else if (lower === 'do' || lower.startsWith('do ') || lower.startsWith('loop ') || lower.startsWith('for ') || lower.startsWith('while ') || lower === 'end while' || lower === 'end for') boxClass = 'box-loop';
                     else if (lower.startsWith('if ') || lower === 'else' || lower === 'end if') boxClass = 'box-if';
                     else if (lower.startsWith('assign ')) boxClass = 'box-assign';
                     
