@@ -129,6 +129,10 @@
                     return match;
                 });
                 
+                
+                // 2.5 Auto-wrap math operations after string concatenation (e.g., & i+1 -> & (i+1)) to fix teacher's precedence
+                line = line.replace(/&\s*([a-zA-Z_]\w*\s*[\+\-]\s*\d+)/g, "& ($1)");
+                
                 // 3. If without Then
                 if (lowerLine.startsWith('if ') && !lowerLine.match(/\bthen$/i)) {
                     line = line + " Then";
