@@ -241,6 +241,10 @@
         let timerInterval;
         let secondsElapsed = 0;
         let isReviewMode = false;
+            currentStartTime = new Date();
+            viewingHistoryMode = false;
+        let currentStartTime = null;
+        let viewingHistoryMode = false;
 
         function initApp() {
             if (typeof mcqData === 'undefined' || Object.keys(mcqData).length === 0) {
@@ -340,6 +344,8 @@
             userAnswers = new Array(activeQuestions.length).fill(null);
             currentQIndex = 0;
             isReviewMode = false;
+            currentStartTime = new Date();
+            viewingHistoryMode = false;
             
             document.getElementById('screen-setup').classList.add('hidden');
             document.getElementById('screen-quiz').classList.remove('hidden');
@@ -413,10 +419,23 @@
             
             if (currentQIndex === activeQuestions.length - 1) {
                 if (isReviewMode) {
-                    btnNext.innerText = 'เสร็จสิ้นการทบทวน';
+                    btnNext.innerText = viewingHistoryMode ? 'กลับไปหน้าประวัติ' : 'เสร็จสิ้นการทบทวน';
                     btnNext.onclick = () => {
                         document.getElementById('screen-quiz').classList.add('hidden');
-                        document.getElementById('screen-result').classList.remove('hidden');
+                        if (viewingHistoryMode) {
+                            document.getElementById('screen-history').classList.remove('hidden');
+                            
+                            // Restore button
+                            const endBtn = document.querySelector('#screen-quiz button[onclick="endQuizEarly()"]');
+                            if(endBtn.innerText === "กลับไปหน้าประวัติ") {
+                                endBtn.innerText = "จบการทำข้อสอบ";
+                                endBtn.onclick = endQuizEarly;
+                                document.getElementById('quiz-timer').classList.remove('text-slate-500');
+                                document.getElementById('quiz-timer').classList.add('text-indigo-600', 'dark:text-indigo-400');
+                            }
+                        } else {
+                            document.getElementById('screen-result').classList.remove('hidden');
+                        }
                     };
                 } else {
                     btnNext.innerText = 'ส่งคำตอบ (Submit)';
@@ -504,17 +523,20 @@
         function saveHistory(score, total, chapter) {
             let history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
             const chapName = chapter === 'all' ? 'รวมทุกบท (Mock Exam)' : 'บทที่ ' + chapter;
+            const endTime = new Date();
             
             history.unshift({
-                date: new Date().toISOString(),
+                date: endTime.toISOString(),
+                startTime: currentStartTime ? currentStartTime.toISOString() : endTime.toISOString(),
+                timeTaken: secondsElapsed,
                 chapter: chapName,
                 score: score,
-                total: total
+                total: total,
+                questions: activeQuestions, // Save exactly what was asked
+                answers: userAnswers // Save exactly what the user picked
             });
             
-            // Keep only last 50
             if (history.length > 50) history = history.slice(0, 50);
-            
             localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
         }
 
@@ -527,7 +549,7 @@
                 return;
             }
             
-            list.innerHTML = history.map(item => {
+            list.innerHTML = history.map((item, index) => {
                 const dateObj = new Date(item.date);
                 const dateStr = dateObj.toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: 'numeric' });
                 const timeStr = dateObj.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
@@ -543,17 +565,72 @@
                             <div class="font-bold text-slate-800 dark:text-slate-100">${item.chapter}</div>
                             <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">${dateStr} เวลา ${timeStr}</div>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <div class="text-right">
-                                <div class="font-bold text-lg text-slate-800 dark:text-slate-100">${item.score}/${item.total}</div>
+                        <div class="flex flex-col sm:flex-row items-end sm:items-center gap-3">
+                            <div class="flex items-center gap-3">
+                                <div class="text-right">
+                                    <div class="font-bold text-lg text-slate-800 dark:text-slate-100">${item.score}/${item.total}</div>
+                                </div>
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm border-2 ${colorClass}">
+                                    ${percent}%
+                                </div>
                             </div>
-                            <div class="w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm border-2 ${colorClass}">
-                                ${percent}%
-                            </div>
+                            <button onclick="viewHistoryDetail(${index})" class="mt-2 sm:mt-0 text-sm px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 font-medium transition-colors">
+                                ดูรายละเอียด
+                            </button>
                         </div>
                     </div>
                 `;
             }).join('');
+        }
+        
+        function viewHistoryDetail(index) {
+            const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+            const item = history[index];
+            if (!item || !item.questions || !item.answers) {
+                alert('ไม่สามารถดูรายละเอียดได้ เนื่องจากเป็นประวัติเวอร์ชันเก่าที่ไม่มีการเก็บข้อมูลรายข้อครับ');
+                return;
+            }
+            
+            // Set up environment for review
+            activeQuestions = item.questions;
+            userAnswers = item.answers;
+            isReviewMode = true;
+            viewingHistoryMode = true;
+            currentQIndex = 0;
+            
+            // Show Quiz Screen directly
+            document.getElementById('screen-history').classList.add('hidden');
+            document.getElementById('screen-quiz').classList.remove('hidden');
+            
+            // Update Timer Display manually for history
+            const m = Math.floor(item.timeTaken / 60).toString().padStart(2, '0');
+            const s = (item.timeTaken % 60).toString().padStart(2, '0');
+            
+            // Time range string
+            const startObj = new Date(item.startTime);
+            const endObj = new Date(item.date);
+            const timeRange = startObj.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' }) + ' - ' + endObj.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
+            
+            document.getElementById('quiz-timer').innerText = `เวลา: ${timeRange} (${m}:${s} นาที)`;
+            document.getElementById('quiz-timer').classList.add('text-slate-500');
+            document.getElementById('quiz-timer').classList.remove('text-indigo-600', 'dark:text-indigo-400');
+            
+            // Change end early button to "Back"
+            const endBtn = document.querySelector('#screen-quiz button[onclick="endQuizEarly()"]');
+            endBtn.innerText = "กลับไปหน้าประวัติ";
+            endBtn.onclick = () => {
+                document.getElementById('screen-quiz').classList.add('hidden');
+                document.getElementById('screen-history').classList.remove('hidden');
+                // Restore button for normal exam mode
+                endBtn.innerText = "จบการทำข้อสอบ";
+                endBtn.onclick = endQuizEarly;
+                
+                // Restore timer colors
+                document.getElementById('quiz-timer').classList.remove('text-slate-500');
+                document.getElementById('quiz-timer').classList.add('text-indigo-600', 'dark:text-indigo-400');
+            };
+            
+            renderQuestion();
         }
 
         function clearHistory() {
