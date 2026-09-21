@@ -87,9 +87,15 @@
         <!-- Content -->
         <div class="flex-1 p-4 md:p-6 lg:p-8 max-w-4xl mx-auto w-full flex flex-col">
             
-            <div class="mb-6">
-                <h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-3xl">ระบบฝึกสอบปรนัย (MCQ)</h1>
-                <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400">วิชา COS1101 (วิทยาการคอมพิวเตอร์เบื้องต้น)</p>
+            <div class="mb-6 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-3xl">ระบบฝึกสอบปรนัย (MCQ)</h1>
+                    <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400">วิชา COS1101 (วิทยาการคอมพิวเตอร์เบื้องต้น)</p>
+                </div>
+                <button onclick="showHistory()" class="px-4 py-2.5 bg-white dark:bg-[#1e1f20] hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 rounded-xl font-bold transition-all shadow-sm flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    ประวัติการสอบ
+                </button>
             </div>
 
             <!-- Screen 1: Setup -->
@@ -174,6 +180,34 @@
                 <div class="flex gap-4 w-full max-w-md">
                     <button onclick="reviewAnswers()" class="flex-1 py-3 border-2 border-indigo-600 text-indigo-600 dark:text-indigo-400 font-bold rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors">ทบทวนข้อที่ผิด</button>
                     <button onclick="resetApp()" class="flex-1 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-md transition-colors">กลับหน้าหลัก</button>
+                </div>
+            </div>
+
+        
+            <!-- Screen 4: History -->
+            <div id="screen-history" class="hidden bg-white dark:bg-[#1e1f20] rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col gap-4">
+                <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4 mb-2">
+                    <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-500"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        ประวัติการสอบของคุณ
+                    </h3>
+                    <button onclick="hideHistory()" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors text-slate-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+                
+                <div id="history-list" class="flex flex-col gap-3 max-h-[50vh] overflow-y-auto custom-scrollbar pr-2">
+                    <!-- History items injected here -->
+                </div>
+                
+                <div class="pt-4 flex justify-between items-center border-t border-slate-100 dark:border-slate-800">
+                    <button onclick="clearHistory()" class="text-rose-500 hover:text-rose-600 text-sm font-medium flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                        ล้างประวัติทั้งหมด
+                    </button>
+                    <button onclick="hideHistory()" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors">
+                        ปิดหน้าต่าง
+                    </button>
                 </div>
             </div>
 
@@ -439,6 +473,7 @@
             document.getElementById('screen-result').classList.remove('hidden');
             
             document.getElementById('final-score').innerText = `${score} / ${activeQuestions.length}`;
+            saveHistory(score, activeQuestions.length, selectedChapter);
         }
         
         function reviewAnswers() {
@@ -449,6 +484,85 @@
             renderQuestion();
         }
         
+
+        // --- History Logic ---
+        const HISTORY_KEY = 'cos1101_mcq_history';
+
+        function showHistory() {
+            document.getElementById('screen-setup').classList.add('hidden');
+            document.getElementById('screen-quiz').classList.add('hidden');
+            document.getElementById('screen-result').classList.add('hidden');
+            document.getElementById('screen-history').classList.remove('hidden');
+            renderHistory();
+        }
+
+        function hideHistory() {
+            document.getElementById('screen-history').classList.add('hidden');
+            document.getElementById('screen-setup').classList.remove('hidden');
+        }
+
+        function saveHistory(score, total, chapter) {
+            let history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+            const chapName = chapter === 'all' ? 'รวมทุกบท (Mock Exam)' : 'บทที่ ' + chapter;
+            
+            history.unshift({
+                date: new Date().toISOString(),
+                chapter: chapName,
+                score: score,
+                total: total
+            });
+            
+            // Keep only last 50
+            if (history.length > 50) history = history.slice(0, 50);
+            
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+        }
+
+        function renderHistory() {
+            const list = document.getElementById('history-list');
+            const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+            
+            if (history.length === 0) {
+                list.innerHTML = '<div class="text-center py-8 text-slate-500 dark:text-slate-400">ยังไม่มีประวัติการทำข้อสอบครับ :)</div>';
+                return;
+            }
+            
+            list.innerHTML = history.map(item => {
+                const dateObj = new Date(item.date);
+                const dateStr = dateObj.toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: 'numeric' });
+                const timeStr = dateObj.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
+                const percent = Math.round((item.score / item.total) * 100);
+                
+                let colorClass = 'text-green-500 bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800';
+                if (percent < 50) colorClass = 'text-rose-500 bg-rose-50 dark:bg-rose-900/20 border-rose-200 dark:border-rose-800';
+                else if (percent < 80) colorClass = 'text-orange-500 bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800';
+                
+                return `
+                    <div class="flex items-center justify-between p-4 rounded-xl border border-slate-100 dark:border-slate-700/50 bg-slate-50 dark:bg-[#282a2c]">
+                        <div>
+                            <div class="font-bold text-slate-800 dark:text-slate-100">${item.chapter}</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">${dateStr} เวลา ${timeStr}</div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="text-right">
+                                <div class="font-bold text-lg text-slate-800 dark:text-slate-100">${item.score}/${item.total}</div>
+                            </div>
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm border-2 ${colorClass}">
+                                ${percent}%
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function clearHistory() {
+            if (confirm('คุณต้องการล้างประวัติการทำข้อสอบทั้งหมดใช่หรือไม่?')) {
+                localStorage.removeItem(HISTORY_KEY);
+                renderHistory();
+            }
+        }
+
         function resetApp() {
             document.getElementById('screen-result').classList.add('hidden');
             document.getElementById('screen-quiz').classList.add('hidden');
