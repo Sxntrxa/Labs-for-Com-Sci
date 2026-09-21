@@ -19,8 +19,8 @@ const mcqData = {
         "Data structure",
         "Control Unit"
       ],
-      "answer": 0,
-      "explanation": "เครื่องคิดเลขสามารถประมวลผลได้หลายประเภท เช่น คิดเลข ประมวลผลการฝากถอน จัดเป็น General-purpose machine"
+      "answer": 1,
+      "explanation": "เครื่องคิดเลขจัดเป็น Specific-purpose machine เพราะถูกออกแบบมาเพื่อวัตถุประสงค์เฉพาะ (การคำนวณ) เท่านั้น ต่างจากคอมพิวเตอร์ที่เป็น General-purpose machine ซึ่งสามารถเขียนโปรแกรมสั่งงานได้หลากหลาย"
     },
     {
       "question": "ในแบบจำลอง Von Neumann Architecture คอมพิวเตอร์ประกอบด้วยหน่วยอะไรบ้าง",
