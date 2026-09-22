@@ -302,8 +302,14 @@
                 total = mcqData[ch].length;
             }
             
-            const options = [5, 10, 20, 30, 50, total].filter(x => x <= total);
-            if (!options.includes(total)) options.push(total);
+            let baseOptions = [];
+            if (ch === 'all') {
+                baseOptions = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+            } else {
+                baseOptions = [5, 10, 15, 20, 30];
+            }
+            const options = baseOptions.filter(x => x <= total);
+            if (!options.includes(total) && total > 0) options.push(total);
             
             // Filter unique
             const uniqueOptions = [...new Set(options)].sort((a,b)=>a-b);
