@@ -1993,59 +1993,998 @@ const mcqData = {
   ],
   "7": [
     {
-      "question": "โครงสร้างข้อมูลแบบใดที่ทำงานด้วยหลักการ เข้าก่อนออกก่อน (First In, First Out: FIFO)",
+      "question": "การคิดเชิงคอมพิวเตอร์ (Computational Thinking) ประกอบด้วยองค์ประกอบกี่อย่าง?",
+      "options": [
+        "4 อย่าง",
+        "3 อย่าง",
+        "5 อย่าง",
+        "2 อย่าง"
+      ],
+      "answer": 0,
+      "explanation": "การคิดเชิงคอมพิวเตอร์ประกอบด้วย 4 อย่าง ได้แก่ Decomposition, Pattern Recognition, Abstraction, และ Algorithm Design"
+    },
+    {
+      "question": "ข้อใดไม่ใช่องค์ประกอบของการคิดเชิงคอมพิวเตอร์?",
+      "options": [
+        "การเขียนโปรแกรม",
+        "การย่อยปัญหา",
+        "การจดจำรูปแบบ",
+        "การออกแบบอัลกอริทึม"
+      ],
+      "answer": 0,
+      "explanation": "การเขียนโปรแกรมไม่ได้เป็นหนึ่งใน 4 องค์ประกอบหลักของการคิดเชิงคอมพิวเตอร์"
+    },
+    {
+      "question": "การย่อยปัญหาหรือสรุปปัญหาให้เล็กลง เรียกว่าอะไร?",
+      "options": [
+        "Decomposition",
+        "Pattern Recognition",
+        "Abstraction",
+        "Algorithm Design"
+      ],
+      "answer": 0,
+      "explanation": "Decomposition คือการย่อยปัญหาหรือระบบที่ซับซ้อนออกเป็นส่วนย่อยๆ"
+    },
+    {
+      "question": "ทักษะการจดจำรูปแบบต่างๆ ของปัญหา เรียกว่าอะไร?",
+      "options": [
+        "Pattern Recognition",
+        "Decomposition",
+        "Abstraction",
+        "Algorithm Design"
+      ],
+      "answer": 0,
+      "explanation": "Pattern Recognition คือการหารูปแบบที่ซ้ำซากหรือลักษณะเฉพาะที่เกิดขึ้นในข้อมูล"
+    },
+    {
+      "question": "การตัดรายละเอียดที่ไม่จำเป็นออกและมุ่งเน้นเฉพาะข้อมูลที่สำคัญ เรียกว่าอะไร?",
+      "options": [
+        "Abstraction",
+        "Decomposition",
+        "Pattern Recognition",
+        "Algorithm Design"
+      ],
+      "answer": 0,
+      "explanation": "Abstraction (นามธรรม) คือกระบวนการลบข้อมูลที่ไม่จำเป็นออกและมุ่งเน้นไปที่รายละเอียดที่สำคัญ"
+    },
+    {
+      "question": "การออกแบบแผนที่รถไฟใต้ดินที่แสดงเฉพาะสถานีและเส้นทาง เป็นตัวอย่างของการคิดแบบใด?",
+      "options": [
+        "Abstraction",
+        "Decomposition",
+        "Pattern Recognition",
+        "Algorithm Design"
+      ],
+      "answer": 0,
+      "explanation": "แผนที่รถไฟใต้ดินแสดงการลบรายละเอียดที่ไม่จำเป็นออกไป (เช่น รูปร่างอาคาร) เป็นตัวอย่างของ Abstraction"
+    },
+    {
+      "question": "ชุดคำสั่งหรือขั้นตอนที่ชัดเจนในการแก้ปัญหาตรงกับข้อใด?",
+      "options": [
+        "Algorithm",
+        "Program",
+        "Pseudocode",
+        "Flowchart"
+      ],
+      "answer": 0,
+      "explanation": "Algorithm คือชุดคำสั่งหรือขั้นตอนที่ชัดเจนในการแก้ปัญหาหนึ่งๆ"
+    },
+    {
+      "question": "เกมซูโดกุ (Sudoku) เป็นตัวอย่างที่ดีในการพัฒนาทักษะด้านใด?",
+      "options": [
+        "Pattern Recognition",
+        "Abstraction",
+        "Decomposition",
+        "Algorithm Design"
+      ],
+      "answer": 0,
+      "explanation": "เกมซูโดกุช่วยฝึกพัฒนาทักษะการจดจำรูปแบบและการหารูปแบบซ้ำๆ (Pattern Recognition)"
+    },
+    {
+      "question": "ข้อใดคือนิยามอย่างไม่เป็นทางการของอัลกอริทึม?",
+      "options": [
+        "ระเบียบวิธีหรือขั้นตอนที่มีจุดเริ่มต้นและจุดสิ้นสุดในการแก้ปัญหา",
+        "ชุดคำสั่งโปรแกรมที่รันบนคอมพิวเตอร์",
+        "การสร้างแผนภาพเพื่อแก้ปัญหา",
+        "การวิเคราะห์ข้อมูลนามธรรม"
+      ],
+      "answer": 0,
+      "explanation": "นิยามอย่างไม่เป็นทางการของอัลกอริทึมคือ ระเบียบวิธีหรือขั้นตอนที่มีจุดเริ่มต้นและสิ้นสุดในการแก้ปัญหา"
+    },
+    {
+      "question": "ตามนิยามที่เป็นทางการ อัลกอริทึมที่ดีต้องมีลักษณะ Unambiguous steps หมายความว่าอย่างไร?",
+      "options": [
+        "แต่ละขั้นตอนต้องมีความหมายชัดเจน ไม่เปิดโอกาสให้ตีความได้มากกว่า 1 อย่าง",
+        "คำสั่งทั้งหมดต้องเรียงลำดับต่อเนื่อง",
+        "ต้องได้ผลลัพธ์ภายในเวลาจำกัด",
+        "ต้องสามารถทำงานซ้ำๆ ได้"
+      ],
+      "answer": 0,
+      "explanation": "Unambiguous steps คือ แต่ละขั้นตอนต้องมีความหมายชัดเจน ตีความได้ทางเดียว"
+    },
+    {
+      "question": "การทำ Terminate in a finite time ในนิยามของอัลกอริทึมหมายถึงอะไร?",
+      "options": [
+        "อัลกอริทึมจะต้องมีการจบสิ้นหรือหยุดในที่สุด",
+        "อัลกอริทึมต้องทำงานได้อย่างรวดเร็ว",
+        "อัลกอริทึมต้องไม่มีข้อผิดพลาด",
+        "อัลกอริทึมต้องกินทรัพยากรน้อย"
+      ],
+      "answer": 0,
+      "explanation": "Terminate in a finite time หมายถึง อัลกอริทึมจะต้องมีการทำงานที่จบสิ้นลงในเวลาจำกัด"
+    },
+    {
+      "question": "อัลกอริทึมที่หาตัวเลขที่มากที่สุดในกลุ่มของเลข 5 จำนวน ใช้วิธีใด?",
+      "options": [
+        "กำหนดตัวแปรเก็บค่ามากที่สุดแล้วเปรียบเทียบทีละตัว",
+        "นำตัวเลขมาบวกกันทั้งหมดแล้วหาร 5",
+        "การสุ่มตัวเลขขึ้นมา 1 ตัว",
+        "เรียงลำดับตัวเลขทั้งหมดก่อนเสมอ"
+      ],
+      "answer": 0,
+      "explanation": "ใช้วิธีเก็บค่าลงตัวแปร (เช่น Largest) แล้วเปรียบเทียบกับข้อมูลทีละตัว"
+    },
+    {
+      "question": "การออกแบบขั้นตอนเพื่อแก้ปัญหาที่มีขนาดใหญ่โดยเขียนรูปแบบให้ทำซ้ำ N ครั้ง แทนการเขียนซ้ำๆ เป็นการประยุกต์ใช้ทักษะใด?",
+      "options": [
+        "Generalization",
+        "Abstraction",
+        "Decomposition",
+        "Pattern Recognition"
+      ],
+      "answer": 0,
+      "explanation": "Generalization (การทำเป็นกรณีทั่วไป) คือการปรับให้อัลกอริทึมใช้ได้กับค่า N ครั้ง"
+    },
+    {
+      "question": "โครงสร้างการเขียนโปรแกรม (Constructs) มีพื้นฐานอยู่กี่รูปแบบ?",
+      "options": [
+        "3 รูปแบบ",
+        "2 รูปแบบ",
+        "4 รูปแบบ",
+        "5 รูปแบบ"
+      ],
+      "answer": 0,
+      "explanation": "โครงสร้าง 3 รูปแบบ (Three constructs) คือ Sequence, Decision, Repetition"
+    },
+    {
+      "question": "ข้อใดคือ 3 รูปแบบพื้นฐานของโครงสร้างโปรแกรม?",
+      "options": [
+        "Sequence, Decision, Repetition",
+        "Input, Process, Output",
+        "Start, Loop, Stop",
+        "Array, Record, Link"
+      ],
+      "answer": 0,
+      "explanation": "Sequence (ลำดับ), Decision (ตัดสินใจ), Repetition (ทำซ้ำ)"
+    },
+    {
+      "question": "โครงสร้างการทำงานแบบมีเงื่อนไข (If-Then-Else) จัดอยู่ในรูปแบบใด?",
+      "options": [
+        "Decision",
+        "Sequence",
+        "Repetition",
+        "Abstraction"
+      ],
+      "answer": 0,
+      "explanation": "Decision หรือ Selection ใช้สำหรับการทำงานที่มีการตัดสินใจหรือเงื่อนไข"
+    },
+    {
+      "question": "โครงสร้างการทำงานแบบทำซ้ำ (While loop) จัดอยู่ในรูปแบบใด?",
+      "options": [
+        "Repetition",
+        "Sequence",
+        "Decision",
+        "Condition"
+      ],
+      "answer": 0,
+      "explanation": "Repetition ใช้ควบคุมการทำงานซ้ำตามเงื่อนไข (ลูป)"
+    },
+    {
+      "question": "การแทนอัลกอริทึมด้วยรูปภาพเพื่อแสดงขั้นตอนการทำงานและภาพรวมของตรรกะ เรียกว่าอะไร?",
+      "options": [
+        "ผังงาน (Flowchart)",
+        "รหัสเทียม (Pseudocode)",
+        "โค้ดโปรแกรม (Source code)",
+        "ไดอะแกรมชั้นข้อมูล"
+      ],
+      "answer": 0,
+      "explanation": "ผังงาน (Flowchart) ใช้รูปภาพแสดงลำดับการทำงาน"
+    },
+    {
+      "question": "การแทนอัลกอริทึมด้วยภาษาเขียนที่มีลักษณะคล้ายภาษาอังกฤษ เรียกว่าอะไร?",
+      "options": [
+        "รหัสเทียม (Pseudocode)",
+        "ผังงาน (Flowchart)",
+        "โครงสร้างต้นไม้ (Tree)",
+        "รหัสเครื่อง (Machine code)"
+      ],
+      "answer": 0,
+      "explanation": "รหัสเทียม (Pseudocode) ใช้แทนอัลกอริทึมด้วยภาษาเขียนใกล้เคียงภาษามนุษย์/อังกฤษ"
+    },
+    {
+      "question": "สัญลักษณ์รูปสี่เหลี่ยมข้าวหลามตัดในผังงาน (Flowchart) มีความหมายว่าอะไร?",
+      "options": [
+        "การตัดสินใจ (Decision)",
+        "จุดเริ่มต้น (Start)",
+        "การทำซ้ำ (Repetition)",
+        "การรับข้อมูล (Input)"
+      ],
+      "answer": 0,
+      "explanation": "สี่เหลี่ยมข้าวหลามตัดใช้แสดงเงื่อนไขในการตัดสินใจ"
+    },
+    {
+      "question": "การแบ่งอัลกอริทึมใหญ่ๆ ออกเป็นหน่วยย่อยๆ เรียกว่าอะไร?",
+      "options": [
+        "Subalgorithm",
+        "Main Algorithm",
+        "Flowchart",
+        "Pseudocode"
+      ],
+      "answer": 0,
+      "explanation": "Subalgorithm คืออัลกอริทึมย่อยที่ถูกแบ่งออกมาเพื่อง่ายต่อการทำความเข้าใจ"
+    },
+    {
+      "question": "คำว่า Subprogram, subroutine, function มีความหมายสอดคล้องกับแนวคิดใด?",
+      "options": [
+        "Subalgorithm",
+        "Generalization",
+        "Pattern Recognition",
+        "Variables"
+      ],
+      "answer": 0,
+      "explanation": "คำเหล่านี้เป็นชื่อเรียกของกระบวนการแบ่งโค้ดเป็นหน่วยย่อย (Subalgorithm)"
+    },
+    {
+      "question": "อัลกอริทึมสำหรับการหาผลรวมของเลขหลายๆ จำนวน มีชื่อเรียกว่าอะไร?",
+      "options": [
+        "Summation",
+        "Searching",
+        "Sorting",
+        "Selecting"
+      ],
+      "answer": 0,
+      "explanation": "Summation คืออัลกอริทึมพื้นฐานสำหรับการหาผลรวม"
+    },
+    {
+      "question": "อัลกอริทึมพื้นฐานใดที่ใช้สำหรับจัดเรียงข้อมูล?",
+      "options": [
+        "Sorting",
+        "Summation",
+        "Filtering",
+        "Merging"
+      ],
+      "answer": 0,
+      "explanation": "Sorting คือกระบวนการจัดเรียงลำดับข้อมูล"
+    },
+    {
+      "question": "ข้อใดไม่ใช่วิธีการของ Sorting Algorithm ที่ระบุในบทเรียน?",
+      "options": [
+        "Hashing Sort",
+        "Selection Sort",
+        "Bubble Sort",
+        "Insertion Sort"
+      ],
+      "answer": 0,
+      "explanation": "Hashing ไม่ใช่วิธีการจัดเรียงข้อมูลพื้นฐานในชุดคำสั่ง (แต่ใช้หาข้อมูล/เก็บข้อมูล)"
+    },
+    {
+      "question": "อัลกอริทึมที่ทำการเรียงลำดับโดยเปรียบเทียบข้อมูลที่อยู่ติดกันแล้วสลับตำแหน่งหากไม่ถูกต้อง คือวิธีใด?",
+      "options": [
+        "Bubble Sort",
+        "Insertion Sort",
+        "Selection Sort",
+        "Merge Sort"
+      ],
+      "answer": 0,
+      "explanation": "Bubble Sort ใช้การเปรียบเทียบข้อมูลติดกันแล้วสลับค่า"
+    },
+    {
+      "question": "ใน Bubble Sort \"หนึ่งรอบ (One Pass)\" หมายถึงอะไร?",
+      "options": [
+        "การดำเนินการเปรียบเทียบและสลับข้อมูลติดกันจนถึงข้อมูลตัวสุดท้าย",
+        "การสลับข้อมูลตัวแรกและตัวสุดท้าย",
+        "การหาค่าต่ำสุดแล้วนำมาไว้หน้าสุด",
+        "การแยกข้อมูลเป็นสองส่วน"
+      ],
+      "answer": 0,
+      "explanation": "One Pass คือการตรวจสอบไปจนสุดอาร์เรย์หนึ่งรอบ ข้อมูลที่ใหญ่ที่สุดจะไปอยู่ท้ายสุด"
+    },
+    {
+      "question": "ในการทำ Insertion Sort จะมีกระบวนการจัดกลุ่มรายการอย่างไร?",
+      "options": [
+        "แบ่งเป็นสองส่วนคือส่วนที่เรียงลำดับแล้วและส่วนที่ยังไม่เรียงลำดับ",
+        "แบ่งออกเป็นคู่ๆ เพื่อสลับตำแหน่ง",
+        "แบ่งข้อมูลเป็นส่วนบนและส่วนล่าง",
+        "คัดลอกข้อมูลทั้งหมดไปใส่ในอีกรายการหนึ่ง"
+      ],
+      "answer": 0,
+      "explanation": "Insertion Sort ทำงานโดยแยกรายการเป็นส่วน sorted และ unsorted"
+    },
+    {
+      "question": "อัลกอริทึมใดต้องมีการหาตำแหน่ง \"แทรก\" ข้อมูลในส่วนที่เรียงลำดับไว้แล้ว?",
+      "options": [
+        "Insertion Sort",
+        "Bubble Sort",
+        "Selection Sort",
+        "Quick Sort"
+      ],
+      "answer": 0,
+      "explanation": "Insertion Sort ดึงข้อมูลมาแทรก (Insert) ลงในส่วนที่เรียงลำดับแล้ว"
+    },
+    {
+      "question": "ตามนิยามอัลกอริทึม Ordered set หมายถึงอะไร?",
+      "options": [
+        "คำสั่งทั้งหมดต้องจัดเรียงลำดับอย่างชัดเจน",
+        "ข้อมูลต้องจัดเรียงจากน้อยไปมาก",
+        "ผลลัพธ์ต้องออกมาเป็นตัวเลข",
+        "ข้อมูลนำเข้าต้องไม่มีซ้ำกัน"
+      ],
+      "answer": 0,
+      "explanation": "Ordered set ในนิยามอัลกอริทึมหมายถึงลำดับของคำสั่งที่มีการจัดเรียงขั้นตอนไว้อย่างชัดเจน"
+    }
+  ],
+  "8-9": [
+    {
+      "question": "โครงสร้างข้อมูลแบบใดที่เก็บข้อมูลประเภทเดียวกันและมีขนาดคงที่?",
       "options": [
         "Array",
-        "Stack",
+        "Record",
+        "Linked List",
+        "Stack"
+      ],
+      "answer": 0,
+      "explanation": "Array (อะเรย์) เป็นโครงสร้างข้อมูลขนาดคงที่และเก็บข้อมูลประเภทเดียวกัน"
+    },
+    {
+      "question": "ข้อใดคือลักษณะสำคัญของโครงสร้างข้อมูล Array?",
+      "options": [
+        "เก็บข้อมูลเรียงกันตามลำดับของหน่วยความจำ",
+        "สามารถขยายขนาดได้เรื่อยๆ อัตโนมัติ",
+        "เก็บข้อมูลต่างประเภทกันได้ในโครงสร้างเดียว",
+        "ใช้ Pointer ชี้ไปยังข้อมูลถัดไปเสมอ"
+      ],
+      "answer": 0,
+      "explanation": "Array อาศัยการเก็บข้อมูลเรียงต่อเนื่องกันในหน่วยความจำ"
+    },
+    {
+      "question": "การอ้างอิงข้อมูลใน Array จะต้องใช้สิ่งใดเป็นตัวระบุตำแหน่ง?",
+      "options": [
+        "ดัชนี (Indexing)",
+        "พอยน์เตอร์ (Pointer)",
+        "ชื่อเรคคอร์ด (Record name)",
+        "ฟิลด์ (Field)"
+      ],
+      "answer": 0,
+      "explanation": "การอ้างอิงข้อมูลในอะเรย์ใช้ดัชนี (Index)"
+    },
+    {
+      "question": "การเก็บข้อมูลของ Array 2 มิติในหน่วยความจำ มักนิยมเก็บแบบใด?",
+      "options": [
+        "Row-major order",
+        "Column-major order",
+        "Diagonal order",
+        "Random order"
+      ],
+      "answer": 0,
+      "explanation": "มักนิยมเก็บข้อมูลแบบ Row-major order (เอาแถวมาเรียงต่อกัน)"
+    },
+    {
+      "question": "โครงสร้างข้อมูลแบบใดที่สามารถเก็บข้อมูลต่างประเภทกันรวมอยู่ในโครงสร้างเดียวกันได้?",
+      "options": [
+        "Record",
+        "Array",
+        "Matrix",
+        "Queue"
+      ],
+      "answer": 0,
+      "explanation": "Record (ระเบียน) สามารถเก็บฟิลด์ที่มีชนิดข้อมูลต่างกันได้"
+    },
+    {
+      "question": "ข้อมูลแต่ละส่วนย่อยภายในระเบียน (Record) เรียกว่าอะไร?",
+      "options": [
+        "Field",
+        "Node",
+        "Index",
+        "Element"
+      ],
+      "answer": 0,
+      "explanation": "ส่วนประกอบย่อยของระเบียนเรียกว่า ฟิลด์ (Field)"
+    },
+    {
+      "question": "การเข้าถึงฟิลด์ในระเบียน (Record) มักใช้เครื่องหมายใดในการระบุ?",
+      "options": [
+        "จุด (.)",
+        "จุลภาค (,)",
+        "วงเล็บ ([ ])",
+        "ปีกกา ({ })"
+      ],
+      "answer": 0,
+      "explanation": "การเข้าถึงฟิลด์ในระเบียนมักใช้เครื่องหมายจุด (.)"
+    },
+    {
+      "question": "โครงสร้างข้อมูลใดที่ใช้ตัวชี้ (Pointer) ในการจำลองและเชื่อมโยงข้อมูลแต่ละตัวเข้าด้วยกัน?",
+      "options": [
+        "Linked List",
+        "Array",
+        "Record",
+        "Sequence"
+      ],
+      "answer": 0,
+      "explanation": "Linked List ใช้ตัวชี้ (Pointer) เพื่อเชื่อมโยงข้อมูลแต่ละโหนด"
+    },
+    {
+      "question": "สมาชิกแต่ละตัวในลิงค์ลิสต์ (Linked List) มักเรียกว่าอะไร?",
+      "options": [
+        "โหนด (Node)",
+        "ฟิลด์ (Field)",
+        "ดัชนี (Index)",
+        "แถว (Row)"
+      ],
+      "answer": 0,
+      "explanation": "แต่ละรายการใน Linked List จะเรียกว่า โหนด (Node)"
+    },
+    {
+      "question": "โหนด (Node) พื้นฐานใน Singly Linked List ประกอบด้วยกี่ส่วน?",
+      "options": [
+        "2 ส่วน (Data และ Link)",
+        "1 ส่วน (Data)",
+        "3 ส่วน (Data, Link1, Link2)",
+        "4 ส่วน"
+      ],
+      "answer": 0,
+      "explanation": "ประกอบด้วยข้อมูล (Data) และตัวชี้ไปยังโหนดถัดไป (Link)"
+    },
+    {
+      "question": "ส่วน Link ของโหนดสุดท้ายใน Linked List ปกติจะมีค่าเป็นอะไร?",
+      "options": [
+        "Null pointer",
+        "Head pointer",
+        "0",
+        "ไม่ระบุค่า"
+      ],
+      "answer": 0,
+      "explanation": "โหนดสุดท้ายจะชี้ไปที่ Null เพื่อบอกว่าเป็นจุดสิ้นสุดของลิสต์"
+    },
+    {
+      "question": "ตัวชี้ที่ใช้ชี้ไปยังโหนดแรกของ Linked List เรียกว่าอะไร?",
+      "options": [
+        "Head pointer",
+        "Null pointer",
+        "Tail pointer",
+        "Current pointer"
+      ],
+      "answer": 0,
+      "explanation": "Head pointer คือตัวชี้ที่ชี้ไปยังจุดเริ่มต้นของ Linked List"
+    },
+    {
+      "question": "โครงสร้างข้อมูลแบบ Linear List แบ่งออกเป็น 2 ประเภทใหญ่ๆ คือข้อใด?",
+      "options": [
+        "Restricted list และ General list",
+        "Array และ Record",
+        "Stack และ Queue",
+        "Node และ Pointer"
+      ],
+      "answer": 0,
+      "explanation": "Linear List แบ่งเป็น Restricted list (จำกัดการเข้าถึง) และ General list"
+    },
+    {
+      "question": "Stack และ Queue จัดเป็นโครงสร้างข้อมูลประเภทใดใน Linear List?",
+      "options": [
+        "Restricted list",
+        "General list",
+        "Unordered list",
+        "Non-linear list"
+      ],
+      "answer": 0,
+      "explanation": "Stack และ Queue มีข้อจำกัดการเอาเข้า/ออก จึงเป็น Restricted list"
+    },
+    {
+      "question": "Stack มีหลักการทำงานแบบใด?",
+      "options": [
+        "LIFO (Last In First Out)",
+        "FIFO (First In First Out)",
+        "Random Access",
+        "Sequential Access"
+      ],
+      "answer": 0,
+      "explanation": "Stack เป็น LIFO ข้อมูลเข้าทีหลังออกก่อน"
+    },
+    {
+      "question": "การเพิ่มข้อมูลหรือสมาชิกเข้าไปใน Stack เรียกว่าอะไร?",
+      "options": [
+        "Push",
+        "Pop",
+        "Enqueue",
+        "Dequeue"
+      ],
+      "answer": 0,
+      "explanation": "การเพิ่มข้อมูลใน Stack คือการ Push"
+    },
+    {
+      "question": "การนำข้อมูลหรือสมาชิกออกจาก Stack เรียกว่าอะไร?",
+      "options": [
+        "Pop",
+        "Push",
+        "Enqueue",
+        "Dequeue"
+      ],
+      "answer": 0,
+      "explanation": "การนำข้อมูลออกจาก Stack คือการ Pop"
+    },
+    {
+      "question": "หากทำการ Push ข้อมูลลงใน Stack ที่ไม่มีที่ว่างเหลืออยู่ จะเกิดสถานะใด?",
+      "options": [
+        "Overflow",
+        "Underflow",
+        "Error Empty",
+        "Collision"
+      ],
+      "answer": 0,
+      "explanation": "เมื่อ Stack เต็มและพยายามใส่ข้อมูลจะเกิด Overflow"
+    },
+    {
+      "question": "หากทำการ Pop ข้อมูลออกจาก Stack ที่ไม่มีข้อมูลอยู่เลย จะเกิดสถานะใด?",
+      "options": [
+        "Underflow",
+        "Overflow",
+        "Full",
+        "Memory Leak"
+      ],
+      "answer": 0,
+      "explanation": "การดึงข้อมูลจากโครงสร้างที่ว่างเปล่าทำให้เกิด Underflow"
+    },
+    {
+      "question": "โครงสร้างข้อมูลใดทำงานคล้ายกับการเข้าแถวซื้อสินค้า?",
+      "options": [
         "Queue",
+        "Stack",
+        "Array",
         "Record"
       ],
-      "answer": 2,
-      "explanation": "Queue (คิว) เป็นโครงสร้างข้อมูลที่มีลักษณะการทำงานแบบ FIFO ข้อมูลที่ถูกนำเข้าคิวก่อน จะได้รับการประมวลผลและนำออกไปก่อน"
+      "answer": 0,
+      "explanation": "Queue ทำงานตามลำดับคิว (มาก่อนได้ก่อน)"
     },
     {
-      "question": "โครงสร้างข้อมูลแบบ Stack จะยอมให้ทำการเพิ่ม (Push) หรือลบ (Pop) ข้อมูลได้ที่ตำแหน่งใดเท่านั้น",
+      "question": "Queue มีหลักการทำงานแบบใด?",
       "options": [
-        "ส่วนหน้า (Front)",
-        "ส่วนท้าย (Rear)",
-        "ส่วนกลาง",
-        "ส่วนหัว (Top)"
+        "FIFO (First In First Out)",
+        "LIFO (Last In First Out)",
+        "Random Access",
+        "Indexed Access"
       ],
-      "answer": 3,
-      "explanation": "Stack ยอมให้จัดการเพิ่มหรือลดข้อมูลได้เพียงฝั่งเดียวเท่านั้น เรียกว่าส่วนหัวของลิสต์ หรือ Top (มีลักษณะเป็น Last In, First Out)"
+      "answer": 0,
+      "explanation": "Queue ใช้หลักการ FIFO ข้อมูลเข้าก่อนออกก่อน"
     },
     {
-      "question": "ในการตัดโหนด (Deleting a node) ออกจาก Linked List สิ่งสำคัญที่ต้องทำคือข้อใด",
+      "question": "การเพิ่มข้อมูลลงใน Queue เรียกว่าอะไร และทำที่ตำแหน่งใด?",
       "options": [
-        "ลบข้อมูลในโหนดทิ้งทันทีโดยไม่ต้องแก้ไขโครงสร้าง",
-        "เปลี่ยนลิงค์ฟิลด์ของโหนดก่อนหน้าให้ชี้ไปยังโหนดที่อยู่ถัดจากโหนดที่ต้องการตัด",
-        "ย้ายโหนดทั้งหมดไปเก็บไว้ที่หน่วยความจำอื่น",
-        "เปลี่ยนค่าตัวชี้ทั้งหมดให้เป็น null"
+        "Enqueue ทำที่ด้านท้าย (Rear)",
+        "Enqueue ทำที่ด้านหน้า (Front)",
+        "Dequeue ทำที่ด้านท้าย (Rear)",
+        "Dequeue ทำที่ด้านหน้า (Front)"
       ],
-      "answer": 1,
-      "explanation": "การลบโหนดใน Linked List ต้องทำการอัปเดต Pointer (ลิงค์ฟิลด์) ของโหนดก่อนหน้า ให้ข้ามไปชี้โหนดยังถัดไปจากโหนดที่เราจะตัดออก"
+      "answer": 0,
+      "explanation": "การใส่ข้อมูลเรียกว่า Enqueue โดยทำต่อที่ท้าย (Rear/Tail)"
     },
     {
-      "question": "ข้อมูลในโครงสร้างแบบ Record มีความแตกต่างจาก Array อย่างไร",
+      "question": "การนำข้อมูลออกจาก Queue เรียกว่าอะไร และทำที่ตำแหน่งใด?",
       "options": [
-        "Record เก็บข้อมูลได้เพียงประเภทเดียวเท่านั้น",
-        "Record สามารถเก็บข้อมูลย่อย (ฟิลด์) ที่มีความแตกต่างของประเภทข้อมูลกันได้ในโครงสร้างเดียวกัน",
-        "Record มีขนาดคงที่เสมอ ไม่สามารถเปลี่ยนแปลงได้",
-        "Record เข้าถึงข้อมูลได้ด้วย Index ตัวเลขแบบอาเรย์เท่านั้น"
+        "Dequeue ทำที่ด้านหน้า (Front)",
+        "Dequeue ทำที่ด้านท้าย (Rear)",
+        "Enqueue ทำที่ด้านหน้า (Front)",
+        "Enqueue ทำที่ด้านท้าย (Rear)"
       ],
-      "answer": 1,
-      "explanation": "Array บังคับให้เก็บข้อมูลประเภทเดียวกันทั้งหมด แต่ Record สามารถจัดเก็บข้อมูล (ฟิลด์) ที่ต่างประเภทกันได้"
+      "answer": 0,
+      "explanation": "การเอาข้อมูลออกเรียกว่า Dequeue โดยดึงออกจากหัวคิว (Front/Head)"
     },
     {
-      "question": "โครงสร้างข้อมูล Array 2 มิติ แบบ row-major storage จะจัดเก็บข้อมูลอย่างไรในหน่วยความจำ",
+      "question": "โครงสร้างข้อมูล General list แบบใดที่ข้อมูลมีการจัดลำดับตามคีย์ (Key)?",
       "options": [
-        "เก็บข้อมูลเรียงตามแนวคอลัมน์จากบนลงล่าง",
-        "เก็บข้อมูลแบบสุ่มกระจายตัวในหน่วยความจำ",
-        "เก็บค่าข้อมูลเรียงตามแถว (row) ในแนวนอนไปเรื่อยๆ จนจบแถวแล้วจึงขึ้นแถวใหม่",
-        "เก็บข้อมูลตามลำดับเลขคู่และเลขคี่"
+        "Ordered list",
+        "Random list",
+        "Stack",
+        "Queue"
       ],
-      "answer": 2,
-      "explanation": "Row-major storage คือการเก็บข้อมูลตามแนวนอน (แถว) ตั้งแต่ซ้ายไปขวาจนสุด แล้วจึงขึ้นแถวถัดไป"
+      "answer": 0,
+      "explanation": "Ordered list คือลิสต์ที่มีการเรียงข้อมูลตามค่าคีย์"
+    },
+    {
+      "question": "การเพิ่มโหนด (Inserting a Node) ใหม่แทรกกลาง Linked List ต้องใช้การจัดการกี่ขั้นตอนหลัก?",
+      "options": [
+        "3 ขั้นตอน",
+        "1 ขั้นตอน",
+        "2 ขั้นตอน",
+        "4 ขั้นตอน"
+      ],
+      "answer": 0,
+      "explanation": "การแทรกโหนดต้องทำ 3 ขั้นตอน: 1. สร้างและใส่ข้อมูลโหนดใหม่ 2. ชี้โหนดใหม่ไปตัวถัดไป 3. ชี้โหนดก่อนหน้ามาที่โหนดใหม่"
+    },
+    {
+      "question": "ในการตัดโหนด (Deleting a node) ออกจาก Linked List สิ่งที่สำคัญที่สุดคืออะไร?",
+      "options": [
+        "การเปลี่ยนลิงค์ฟิลด์ของโหนดก่อนหน้าให้ชี้ข้ามโหนดที่ต้องการตัด",
+        "การลบข้อมูลในโหนดทิ้งทันที",
+        "การเปลี่ยนค่า Head pointer เสมอ",
+        "การทำสำเนาโหนดทั้งหมด"
+      ],
+      "answer": 0,
+      "explanation": "ต้องนำตัวชี้ของโหนดก่อนหน้า ชี้ข้ามไปยังโหนดถัดจากโหนดที่ถูกตัด"
+    },
+    {
+      "question": "การดึงหรือค้นข้อมูลจากโหนดในลิงค์ลิสต์ ทำได้โดยวิธีใด?",
+      "options": [
+        "ท่องลิสต์และเปรียบเทียบทีละโหนดจนพบ",
+        "ใช้ดัชนีระบุตำแหน่งข้อมูลโดยตรง",
+        "คำนวณตำแหน่งด้วย Hash Function",
+        "ดึงข้อมูลจากตำแหน่งสุดท้ายเสมอ"
+      ],
+      "answer": 0,
+      "explanation": "Linked list ต้องมีการท่องลิสต์ (Traversing) ตั้งแต่เริ่มเพื่อค้นหาโหนด"
+    },
+    {
+      "question": "การท่องลิสต์ (Traversing a List) มีจุดประสงค์เพื่ออะไร?",
+      "options": [
+        "เพื่อเข้าถึงและประมวลผลทุกโหนดในลิสต์ตามลำดับ",
+        "เพื่อลบโหนดทั้งหมด",
+        "เพื่อสุ่มข้อมูลขึ้นมา",
+        "เพื่อเพิ่มขนาดของลิสต์"
+      ],
+      "answer": 0,
+      "explanation": "การท่องลิสต์คือการเข้าถึงข้อมูลแต่ละโหนดตามลำดับในลิสต์"
+    },
+    {
+      "question": "โครงสร้างใดที่จำเป็นต้องมี Head Pointer เพื่อไม่ให้ข้อมูลสูญหาย?",
+      "options": [
+        "Linked List",
+        "Array",
+        "Record",
+        "Sequential File"
+      ],
+      "answer": 0,
+      "explanation": "Linked List ต้องมี Head Pointer เป็นจุดเริ่มต้น มิเช่นนั้นจะไม่สามารถเข้าถึงข้อมูลใดได้เลย"
+    },
+    {
+      "question": "หากกำหนด Stack ว่าง แล้วทำคำสั่ง Push(5), Push(10), Pop(), Push(20) ลำดับข้อมูลที่เหลือใน Stack (จากล่างขึ้นบน) คือข้อใด?",
+      "options": [
+        "5, 20",
+        "10, 20",
+        "5, 10",
+        "20, 5"
+      ],
+      "answer": 0,
+      "explanation": "Push 5, Push 10 (Stack: 5, 10), Pop ได้ 10 ออก (Stack: 5), Push 20 (Stack: 5, 20)"
+    }
+  ],
+  "10-11": [
+    {
+      "question": "แฟ้มข้อมูล (File) ตามโครงสร้างในคอมพิวเตอร์ เกิดจากการรวมกลุ่มของอะไร?",
+      "options": [
+        "ระเบียน (Record)",
+        "ฟิลด์ (Field)",
+        "ไบต์ (Byte)",
+        "บิต (Bit)"
+      ],
+      "answer": 0,
+      "explanation": "แฟ้มข้อมูลเกิดจากการรวมกันของหลายๆ ระเบียน (Record)"
+    },
+    {
+      "question": "ข้อมูลดิบที่ยังไม่ผ่านการประมวลผล เรียกว่าอะไร?",
+      "options": [
+        "Data (ข้อมูล)",
+        "Information (สารสนเทศ)",
+        "Record (ระเบียน)",
+        "File (แฟ้มข้อมูล)"
+      ],
+      "answer": 0,
+      "explanation": "Data คือข้อเท็จจริงหรือข้อมูลดิบที่ยังไม่ผ่านการประมวลผล"
+    },
+    {
+      "question": "ข้อมูลที่ผ่านการประมวลผลและพร้อมนำไปใช้ประโยชน์ เรียกว่าอะไร?",
+      "options": [
+        "Information (สารสนเทศ)",
+        "Data (ข้อมูล)",
+        "Field (ฟิลด์)",
+        "Entity (เอนทิตี)"
+      ],
+      "answer": 0,
+      "explanation": "Information คือข้อมูลที่ผ่านกระบวนการเพื่อให้สามารถนำไปใช้ประโยชน์ได้"
+    },
+    {
+      "question": "หน่วยจัดเก็บข้อมูลที่เล็กที่สุดในระบบคอมพิวเตอร์คืออะไร?",
+      "options": [
+        "บิต (Bit)",
+        "ไบต์ (Byte)",
+        "ฟิลด์ (Field)",
+        "ระเบียน (Record)"
+      ],
+      "answer": 0,
+      "explanation": "บิต (Bit) เป็นหน่วยข้อมูลพื้นฐานที่เล็กที่สุด มีค่า 0 หรือ 1"
+    },
+    {
+      "question": "การอ้างอิงและเข้าถึงข้อมูลในแฟ้มข้อมูลโดยทั่วไปแบ่งเป็นกี่แบบหลักๆ?",
+      "options": [
+        "2 แบบ (Sequential และ Random)",
+        "3 แบบ",
+        "4 แบบ",
+        "5 แบบ"
+      ],
+      "answer": 0,
+      "explanation": "มี 2 แบบหลักคือ การเข้าถึงตามลำดับ (Sequential) และการเข้าถึงแบบสุ่ม (Random)"
+    },
+    {
+      "question": "แฟ้มข้อมูลใดที่การอ่านข้อมูลต้องอ่านเรียงตามลำดับตั้งแต่เรคคอร์ดแรกเสมอ?",
+      "options": [
+        "Sequential File",
+        "Indexed File",
+        "Hashed File",
+        "Random File"
+      ],
+      "answer": 0,
+      "explanation": "Sequential File จะต้องเข้าถึงแบบเรียงลำดับไปเรื่อยๆ"
+    },
+    {
+      "question": "ในกระบวนการปรับปรุงแฟ้มข้อมูลลำดับ (Updating Sequential Files) แฟ้มข้อมูลที่เก็บรายละเอียดการเปลี่ยนแปลงใหม่ๆ เรียกว่าอะไร?",
+      "options": [
+        "Transaction File",
+        "Old Master File",
+        "New Master File",
+        "Error Report File"
+      ],
+      "answer": 0,
+      "explanation": "Transaction File เก็บรายละเอียดการเปลี่ยนแปลง (Add, Delete, Update) เพื่อนำไปปรับปรุง Master File"
+    },
+    {
+      "question": "หากใน Transaction File มีคำสั่งลบ (Delete) ข้อมูลที่ไม่มีอยู่ใน Master File จะส่งผลอย่างไร?",
+      "options": [
+        "ถูกนำไปบันทึกลง Error Report File",
+        "ลบข้อมูลทั้งหมดทิ้ง",
+        "เพิ่มข้อมูลใหม่เข้าไปแทน",
+        "บันทึกซ้ำใน New Master File"
+      ],
+      "answer": 0,
+      "explanation": "หากกระทำคำสั่งผิดพลาด จะรายงานข้อผิดพลาดใน Error Report File"
+    },
+    {
+      "question": "แฟ้มข้อมูลใดที่ใช้โครงสร้างดัชนีเพื่อชี้ไปยังตำแหน่งของข้อมูลจริงในแฟ้มหลัก?",
+      "options": [
+        "Indexed File",
+        "Sequential File",
+        "Hashed File",
+        "Direct File"
+      ],
+      "answer": 0,
+      "explanation": "Indexed File เป็นแฟ้มข้อมูลแบบสุ่มที่มีแฟ้มดัชนี (Index) ชี้ไปยังข้อมูลหลัก"
+    },
+    {
+      "question": "การทำงานของ Hashed File ต้องใช้สิ่งใดในการแปลงคีย์เพื่อหาตำแหน่งจัดเก็บ?",
+      "options": [
+        "Hash Function",
+        "Sequential Search",
+        "Index Table",
+        "Pointer"
+      ],
+      "answer": 0,
+      "explanation": "Hashed File ใช้ Hash Function คำนวณคีย์เป็น Address ในการจัดเก็บ"
+    },
+    {
+      "question": "กรณีที่ทำการแฮช (Hash) ด้วยคีย์ 2 คีย์ที่ต่างกัน แต่ได้ผลลัพธ์ตำแหน่ง (Address) เดียวกัน เรียกว่าอะไร?",
+      "options": [
+        "การชนกัน (Collision)",
+        "การแทรก (Insertion)",
+        "ดัชนีล้มเหลว (Index Failure)",
+        "โอเวอร์โฟลว์ (Overflow)"
+      ],
+      "answer": 0,
+      "explanation": "การชนกัน (Collision) เกิดขึ้นเมื่อสองเรคคอร์ดคำนวณแอดเดรสได้ที่เดียวกัน"
+    },
+    {
+      "question": "เรคคอร์ดที่มีค่าคีย์ต่างกันแต่เมื่อผ่าน Hash Function แล้วได้ตำแหน่งเดียวกัน เรียกว่าอะไร?",
+      "options": [
+        "Synonym",
+        "Homonym",
+        "Duplicate",
+        "Alias"
+      ],
+      "answer": 0,
+      "explanation": "Synonym เป็นศัพท์ใช้เรียกคีย์ที่สร้างจากฟังก์ชันแฮชแล้วลงตำแหน่งเดียวกัน"
+    },
+    {
+      "question": "วิธี Modulo Division นิยมใช้ตัวหารเป็นเลขแบบใดเพื่อลดการชนกัน?",
+      "options": [
+        "จำนวนเฉพาะ (Prime number)",
+        "เลขคู่ (Even number)",
+        "เลขคี่ (Odd number)",
+        "จำนวนเต็มบวกใดๆ"
+      ],
+      "answer": 0,
+      "explanation": "มักใช้จำนวนเฉพาะเป็นตัวหาร เพื่อให้เกิดการกระจายที่อยู่ได้ดีและลดการชนกัน"
+    },
+    {
+      "question": "การแก้ปัญหาการชนกัน (Collision Resolution) โดยหาพื้นที่ว่างถัดไปในแฟ้มเพื่อเก็บเรคคอร์ด เรียกว่าวิธีใด?",
+      "options": [
+        "Open Addressing",
+        "Linked list resolution",
+        "Bucket hashing",
+        "Chaining"
+      ],
+      "answer": 0,
+      "explanation": "Open Addressing เป็นวิธีแก้การชนโดยเลื่อนหาตำแหน่งว่างถัดไป (เช่น Address+1)"
+    },
+    {
+      "question": "การแก้ปัญหาการชนกันโดยใช้ตัวชี้ (Pointer) ชี้ไปยังพื้นที่ล้น (Overflow Area) แยกต่างหาก เรียกว่าวิธีใด?",
+      "options": [
+        "Linked list resolution",
+        "Open Addressing",
+        "Bucket hashing",
+        "Linear Probing"
+      ],
+      "answer": 0,
+      "explanation": "Linked list resolution ใช้ Pointer ชี้ไปยัง Overflow Area"
+    },
+    {
+      "question": "การแก้ปัญหาการชนกันโดยจัดพื้นที่หนึ่งแอดเดรสให้เป็นบล็อก (Bucket) เพื่อเก็บได้มากกว่า 1 เรคคอร์ด เรียกว่าวิธีใด?",
+      "options": [
+        "Bucket hashing resolution",
+        "Linked list resolution",
+        "Open Addressing",
+        "Direct addressing"
+      ],
+      "answer": 0,
+      "explanation": "Bucket hashing ทำให้หนึ่ง Address สามารถเก็บได้หลายเรคคอร์ดเหมือนถัง"
+    },
+    {
+      "question": "DBMS ย่อมาจากอะไร?",
+      "options": [
+        "Database Management System",
+        "Data Backup Management System",
+        "Data Block Memory System",
+        "Database Master System"
+      ],
+      "answer": 0,
+      "explanation": "DBMS คือ ระบบจัดการฐานข้อมูล"
+    },
+    {
+      "question": "องค์ประกอบของระบบจัดการฐานข้อมูล (DBMS) มีกี่ส่วนหลัก?",
+      "options": [
+        "5 ส่วน",
+        "3 ส่วน",
+        "4 ส่วน",
+        "6 ส่วน"
+      ],
+      "answer": 0,
+      "explanation": "ประกอบด้วย 5 ส่วน: Hardware, Software, Data, Users, Procedures"
+    },
+    {
+      "question": "บุคคลที่มีหน้าที่กำหนดสิทธิ์ ควบคุม และบริหารจัดการฐานข้อมูล คือใคร?",
+      "options": [
+        "DBA (Database Administrator)",
+        "End User",
+        "Programmer",
+        "System Analyst"
+      ],
+      "answer": 0,
+      "explanation": "DBA เป็นผู้ดูแลบริหารและกำหนดสิทธิ์ผู้ใช้งาน"
+    },
+    {
+      "question": "แบบจำลองฐานข้อมูลใดที่นิยมใช้มากที่สุดในปัจจุบัน โดยเก็บข้อมูลในรูปตาราง?",
+      "options": [
+        "Relational Database Model",
+        "Hierarchical Model",
+        "Network Model",
+        "Object-Oriented Model"
+      ],
+      "answer": 0,
+      "explanation": "Relational Database Model เป็นแบบจำลองเชิงสัมพันธ์ที่เก็บข้อมูลเป็นตาราง"
+    },
+    {
+      "question": "ในฐานข้อมูลเชิงสัมพันธ์ (Relational Model) ตารางข้อมูล (Table) มีชื่อเรียกทางทฤษฎีว่าอะไร?",
+      "options": [
+        "Relation",
+        "Tuple",
+        "Attribute",
+        "Entity"
+      ],
+      "answer": 0,
+      "explanation": "ตารางในแบบจำลองเชิงสัมพันธ์ถูกเรียกว่า Relation"
+    },
+    {
+      "question": "ในฐานข้อมูลเชิงสัมพันธ์ แถว (Row) แต่ละแถวในตารางเรียกว่าอะไร?",
+      "options": [
+        "Tuple",
+        "Attribute",
+        "Relation",
+        "Domain"
+      ],
+      "answer": 0,
+      "explanation": "ข้อมูล 1 รายการหรือ 1 แถวในตารางเรียกว่า Tuple"
+    },
+    {
+      "question": "ในฐานข้อมูลเชิงสัมพันธ์ คอลัมน์ (Column) แต่ละคอลัมน์ในตารางเรียกว่าอะไร?",
+      "options": [
+        "Attribute",
+        "Tuple",
+        "Relation",
+        "Record"
+      ],
+      "answer": 0,
+      "explanation": "คอลัมน์ใช้เก็บคุณลักษณะ เรียกว่า Attribute"
+    },
+    {
+      "question": "คุณสมบัติที่สำคัญของ Primary Key คือข้อใด?",
+      "options": [
+        "มีค่าไม่ซ้ำกันและเป็นค่าว่างไม่ได้",
+        "สามารถเป็นค่าว่างได้",
+        "มีค่าซ้ำกันได้หากอยู่ในตารางเดียวกัน",
+        "ต้องเป็นตัวเลขเท่านั้น"
+      ],
+      "answer": 0,
+      "explanation": "Primary Key ต้องมีค่าเป็นเอกลักษณ์ (Unique) และห้ามเป็นค่าว่าง (Not null)"
+    },
+    {
+      "question": "Foreign Key มีหน้าที่หลักเพื่ออะไร?",
+      "options": [
+        "ใช้เชื่อมโยงความสัมพันธ์ระหว่างตาราง",
+        "ป้องกันไม่ให้ใครลบข้อมูล",
+        "ใช้กำหนดความปลอดภัยของฐานข้อมูล",
+        "ทำหน้าที่แทน Primary Key เมื่อเกิดข้อผิดพลาด"
+      ],
+      "answer": 0,
+      "explanation": "Foreign Key ใช้เป็นคีย์นอกที่ใช้อ้างอิงไปยัง Primary Key ของอีกตารางหนึ่ง"
+    },
+    {
+      "question": "ภาษามาตรฐานที่ใช้จัดการกับฐานข้อมูลเชิงสัมพันธ์ คือภาษาใด?",
+      "options": [
+        "SQL (Structured Query Language)",
+        "C++",
+        "Java",
+        "Python"
+      ],
+      "answer": 0,
+      "explanation": "SQL เป็นภาษามาตรฐานในการเข้าถึงและจัดการฐานข้อมูลเชิงสัมพันธ์"
+    },
+    {
+      "question": "คำสั่งการดำเนินการใน SQL ข้อใดที่ใช้ดึงข้อมูลหรือเลือก \"แถว (Row)\" ที่ตรงตามเงื่อนไข?",
+      "options": [
+        "Select",
+        "Project",
+        "Join",
+        "Union"
+      ],
+      "answer": 0,
+      "explanation": "คำสั่ง Select ใช้กรองดึงข้อมูลระดับแถว (Row)"
+    },
+    {
+      "question": "คำสั่งการดำเนินการใน SQL ข้อใดที่ใช้เลือกเฉพาะ \"คอลัมน์ (Column)\" ที่ต้องการออกมาแสดง?",
+      "options": [
+        "Project",
+        "Select",
+        "Join",
+        "Union"
+      ],
+      "answer": 0,
+      "explanation": "คำสั่ง Project ใช้ระบุว่าต้องการดึงเฉพาะคอลัมน์ใดมาแสดง"
+    },
+    {
+      "question": "การนำตารางสองตารางมาเชื่อมต่อกันเพื่อดึงข้อมูลที่สัมพันธ์กัน เรียกว่าปฏิบัติการใด?",
+      "options": [
+        "Join",
+        "Union",
+        "Intersection",
+        "Difference"
+      ],
+      "answer": 0,
+      "explanation": "การ Join คือการเชื่อมตารางตั้งแต่ 2 ตารางขึ้นไปเข้าด้วยกันผ่านคีย์ที่สัมพันธ์กัน"
+    },
+    {
+      "question": "คำสั่ง Difference ในการดำเนินการกับ Relation มีผลลัพธ์เป็นอย่างไร?",
+      "options": [
+        "ดึงข้อมูลที่มีอยู่ในตารางแรกแต่ไม่มีในตารางที่สอง",
+        "ดึงข้อมูลที่มีอยู่ในทั้งสองตาราง",
+        "รวมข้อมูลทั้งหมดของสองตาราง",
+        "เชื่อมตารางสองตารางเข้าด้วยกัน"
+      ],
+      "answer": 0,
+      "explanation": "Difference คือการหาผลต่าง นำข้อมูลที่มีในตารางแรกแต่ลบส่วนที่มีในตารางสองออก"
     }
   ],
   "8": [
