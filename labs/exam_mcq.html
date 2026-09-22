@@ -119,6 +119,19 @@
                     <div id="count-list" class="flex flex-wrap gap-3">
                         <!-- Loaded dynamically -->
                     </div>
+                </div>
+
+                <div id="timer-section" class="hidden">
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2">
+                        <span class="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
+                        ตั้งเวลาสอบ
+                    </h3>
+                    <div id="timer-list" class="flex flex-wrap gap-3">
+                        <button onclick="selectTimerLimit(0)" id="btn-timer-0" class="px-4 py-2 rounded-lg border-2 border-indigo-500 dark:border-indigo-400 bg-indigo-50 dark:bg-indigo-900/20 text-sm font-bold transition-colors">ไม่จับเวลา</button>
+                        <button onclick="selectTimerLimit(60)" id="btn-timer-60" class="px-4 py-2 rounded-lg border-2 border-slate-200 dark:border-slate-700 hover:border-indigo-500 text-sm font-bold transition-colors">60 นาที</button>
+                        <button onclick="selectTimerLimit(90)" id="btn-timer-90" class="px-4 py-2 rounded-lg border-2 border-slate-200 dark:border-slate-700 hover:border-indigo-500 text-sm font-bold transition-colors">90 นาที</button>
+                        <button onclick="selectTimerLimit(120)" id="btn-timer-120" class="px-4 py-2 rounded-lg border-2 border-slate-200 dark:border-slate-700 hover:border-indigo-500 text-sm font-bold transition-colors">120 นาที</button>
+                    </div>
                     <div class="mt-6 flex justify-end">
                         <button onclick="startQuiz()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg flex items-center gap-2">
                             เริ่มทำข้อสอบ
@@ -243,6 +256,7 @@
         let isReviewMode = false;
         let currentStartTime = null;
         let viewingHistoryMode = false;
+        let timerLimitSeconds = 0; // 0 = no limit
 
         function initApp() {
             if (typeof mcqData === 'undefined' || Object.keys(mcqData).length === 0) {
@@ -323,6 +337,8 @@
                 b.innerText = opt === total && opt > 50 ? 'ทั้งหมด (' + opt + ')' : opt + ' ข้อ';
                 b.onclick = () => {
                     selectedCount = opt;
+                    // Show timer section
+                    document.getElementById('timer-section').classList.remove('hidden');
                     document.querySelectorAll('#count-list button').forEach(btn => btn.classList.remove('border-indigo-500', 'bg-indigo-50', 'dark:bg-indigo-900/20', 'text-indigo-600', 'dark:text-indigo-400'));
                     b.classList.add('border-indigo-500', 'bg-indigo-50', 'dark:bg-indigo-900/20', 'text-indigo-600', 'dark:text-indigo-400');
                 };
@@ -333,6 +349,18 @@
             if(uniqueOptions.length > 0) {
                 countList.children[0].click();
             }
+        }
+
+        function selectTimerLimit(minutes) {
+            timerLimitSeconds = minutes * 60;
+            // Highlight selected
+            document.querySelectorAll('#timer-list button').forEach(b => {
+                b.classList.remove('border-indigo-500', 'dark:border-indigo-400', 'bg-indigo-50', 'dark:bg-indigo-900/20');
+                b.classList.add('border-slate-200', 'dark:border-slate-700');
+            });
+            const btnId = `btn-timer-${minutes}`;
+            document.getElementById(btnId).classList.remove('border-slate-200', 'dark:border-slate-700');
+            document.getElementById(btnId).classList.add('border-indigo-500', 'dark:border-indigo-400', 'bg-indigo-50', 'dark:bg-indigo-900/20');
         }
 
         function startQuiz() {
@@ -361,15 +389,40 @@
             timerInterval = setInterval(() => {
                 secondsElapsed++;
                 updateTimerDisplay();
+                // Auto-submit when time runs out
+                if (timerLimitSeconds > 0 && secondsElapsed >= timerLimitSeconds) {
+                    clearInterval(timerInterval);
+                    alert('⏰ หมดเวลาแล้วครับ! ระบบจะส่งคำตอบให้อัตโนมัติ');
+                    endQuizEarly();
+                }
             }, 1000);
             
             renderQuestion();
         }
 
         function updateTimerDisplay() {
-            const m = Math.floor(secondsElapsed / 60).toString().padStart(2, '0');
-            const s = (secondsElapsed % 60).toString().padStart(2, '0');
-            document.getElementById('quiz-timer').innerText = `${m}:${s}`;
+            if (timerLimitSeconds > 0) {
+                // Countdown mode
+                const remaining = Math.max(0, timerLimitSeconds - secondsElapsed);
+                const m = Math.floor(remaining / 60).toString().padStart(2, '0');
+                const s = (remaining % 60).toString().padStart(2, '0');
+                document.getElementById('quiz-timer').innerText = `เหลือ ${m}:${s}`;
+                
+                // Change color when less than 5 minutes
+                if (remaining <= 300) {
+                    document.getElementById('quiz-timer').classList.add('text-rose-500');
+                    document.getElementById('quiz-timer').classList.remove('text-indigo-600', 'dark:text-indigo-400');
+                }
+                // Flash when less than 1 minute
+                if (remaining <= 60) {
+                    document.getElementById('quiz-timer').classList.toggle('opacity-50');
+                }
+            } else {
+                // Stopwatch mode (no limit)
+                const m = Math.floor(secondsElapsed / 60).toString().padStart(2, '0');
+                const s = (secondsElapsed % 60).toString().padStart(2, '0');
+                document.getElementById('quiz-timer').innerText = `${m}:${s}`;
+            }
         }
 
         function renderQuestion() {
@@ -647,6 +700,23 @@
         }
 
         function resetApp() {
+            timerLimitSeconds = 0;
+            // Reset timer colors
+            const timerEl = document.getElementById('quiz-timer');
+            if (timerEl) {
+                timerEl.classList.remove('text-rose-500', 'opacity-50');
+                timerEl.classList.add('text-indigo-600', 'dark:text-indigo-400');
+            }
+            // Reset timer selection UI
+            document.querySelectorAll('#timer-list button').forEach(b => {
+                b.classList.remove('border-indigo-500', 'dark:border-indigo-400', 'bg-indigo-50', 'dark:bg-indigo-900/20');
+                b.classList.add('border-slate-200', 'dark:border-slate-700');
+            });
+            const defaultTimerBtn = document.getElementById('btn-timer-0');
+            if (defaultTimerBtn) {
+                defaultTimerBtn.classList.remove('border-slate-200', 'dark:border-slate-700');
+                defaultTimerBtn.classList.add('border-indigo-500', 'dark:border-indigo-400', 'bg-indigo-50', 'dark:bg-indigo-900/20');
+            }
             document.getElementById('screen-result').classList.add('hidden');
             document.getElementById('screen-quiz').classList.add('hidden');
             document.getElementById('screen-setup').classList.remove('hidden');
