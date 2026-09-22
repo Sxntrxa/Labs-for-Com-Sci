@@ -313,11 +313,8 @@
             } else {
                 baseOptions = [5, 10, 15, 20, 30];
             }
-            const options = baseOptions.filter(x => x <= total);
-            if (!options.includes(total) && total > 0) options.push(total);
-            
-            // Filter unique
-            const uniqueOptions = [...new Set(options)].sort((a,b)=>a-b);
+            // Only show options that are <= total available in bank
+            const uniqueOptions = baseOptions.filter(x => x <= total);
             
             uniqueOptions.forEach((opt, idx) => {
                 const b = document.createElement('button');
