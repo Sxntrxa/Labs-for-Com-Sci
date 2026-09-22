@@ -48,6 +48,21 @@
             border-color: #22c55e !important;
             color: #15803d !important;
         }
+        
+        /* Question Nav Panel */
+        .nav-btn {
+            width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; font-weight: 700; font-size: 13px;
+            border: 2px solid #e2e8f0; color: #64748b;
+            background: white; cursor: pointer; transition: all 0.15s ease;
+        }
+        .dark .nav-btn { background: #1e1f20; border-color: #334155; color: #94a3b8; }
+        .nav-btn:hover { border-color: #6366f1; transform: scale(1.08); }
+        .nav-btn.nav-answered { background: #dcfce7; border-color: #22c55e; color: #15803d; }
+        .dark .nav-btn.nav-answered { background: rgba(34,197,94,0.15); border-color: #22c55e; color: #4ade80; }
+        .nav-btn.nav-current { background: #eef2ff; border-color: #6366f1; color: #4f46e5; box-shadow: 0 0 0 3px rgba(99,102,241,0.2); }
+        .dark .nav-btn.nav-current { background: rgba(99,102,241,0.2); border-color: #818cf8; color: #a5b4fc; box-shadow: 0 0 0 3px rgba(99,102,241,0.15); }
         .dark .option-correct {
             background-color: rgba(34, 197, 94, 0.15) !important;
             border-color: #4ade80 !important;
@@ -152,6 +167,24 @@
                 <!-- Progress Bar -->
                 <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
                     <div id="quiz-progress-bar" class="bg-indigo-600 h-2 rounded-full transition-all duration-300" style="width: 10%"></div>
+                </div>
+
+                <!-- Question Navigation Panel -->
+                <div id="nav-panel" class="bg-white dark:bg-[#1e1f20] rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-sm font-bold text-slate-600 dark:text-slate-400 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                            แผงนำทาง
+                        </div>
+                        <div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+                            <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded bg-green-200 dark:bg-green-800 border border-green-500"></span> ตอบแล้ว</span>
+                            <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-600"></span> ยังไม่ตอบ</span>
+                            <span id="nav-answered-count" class="font-bold text-indigo-600 dark:text-indigo-400">0/0</span>
+                        </div>
+                    </div>
+                    <div id="nav-grid" class="flex flex-wrap gap-2">
+                        <!-- Navigation buttons generated dynamically -->
+                    </div>
                 </div>
 
                 <div class="bg-white dark:bg-[#1e1f20] rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex-1 flex flex-col">
@@ -351,6 +384,38 @@
             }
         }
 
+        function renderNavPanel() {
+            const grid = document.getElementById('nav-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            
+            let answeredCount = 0;
+            
+            activeQuestions.forEach((q, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'nav-btn';
+                btn.innerText = idx + 1;
+                
+                if (userAnswers[idx] !== null) {
+                    btn.classList.add('nav-answered');
+                    answeredCount++;
+                }
+                if (idx === currentQIndex) {
+                    btn.classList.add('nav-current');
+                }
+                
+                btn.onclick = () => {
+                    currentQIndex = idx;
+                    renderQuestion();
+                };
+                
+                grid.appendChild(btn);
+            });
+            
+            const countEl = document.getElementById('nav-answered-count');
+            if (countEl) countEl.innerText = `${answeredCount}/${activeQuestions.length}`;
+        }
+
         function selectTimerLimit(minutes) {
             timerLimitSeconds = minutes * 60;
             // Highlight selected
@@ -470,6 +535,8 @@
                 }
                 optContainer.appendChild(btn);
             });
+            
+            renderNavPanel();
             
             const btnPrev = document.getElementById('btn-prev');
             const btnNext = document.getElementById('btn-next');
