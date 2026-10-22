@@ -997,664 +997,334 @@ const mcqData = {
   ],
   "4": [
     {
-      "question": "von Neumann architecture ประกอบด้วยอะไรเป็นหลัก",
+      "question": "ข้อใดคือนิยามของภาษาโปรแกรม (Programming Language) ตามสไลด์บทเรียน?",
       "options": [
-        "Memory, CPU (ALU, Control)",
-        "Harddisk, SSD",
-        "Monitor, Keyboard",
-        "OS, Application"
-      ],
-      "answer": 0,
-      "explanation": "von Neumann มี Memory และ CPU ที่ประกอบด้วย ALU และ Control unit"
-    },
-    {
-      "question": "คำสั่งใดต่อไปนี้เป็นลักษณะของ Imperative Programming",
-      "options": [
-        "ระบุลำดับขั้นตอนชัดเจน",
-        "ใช้กฎทางตรรกะ",
-        "ไม่มีการเปลี่ยนค่าตัวแปร",
-        "เน้นการเรียกซ้ำ (recursive)"
-      ],
-      "answer": 0,
-      "explanation": "Imperative programming เป็นการสั่งงานแบบระบุขั้นตอน (how) และใช้ mutable variables"
-    },
-    {
-      "question": "Prolog จัดอยู่ใน Programming Paradigm แบบใด",
-      "options": [
-        "Logic",
-        "Imperative",
-        "Functional",
-        "Object-Oriented"
-      ],
-      "answer": 0,
-      "explanation": "Prolog เป็นภาษาแบบ Logic Programming"
-    },
-    {
-      "question": "ขั้นตอนใดในกระบวนการแปลภาษา (Compilation) ทำหน้าที่แปลงตัวอักษรเป็น lexical units",
-      "options": [
-        "Lexical analysis",
-        "Syntax analysis",
-        "Semantic analysis",
-        "Code generation"
-      ],
-      "answer": 0,
-      "explanation": "Lexical analysis หรือ Scanner ทำหน้าที่นี้"
-    },
-    {
-      "question": "ข้อใดคือข้อดีของ Interpreter เมื่อเทียบกับ Compiler",
-      "options": [
-        "แสดงข้อผิดพลาด (Run-time error) ได้ทันทีและพัฒนาโปรแกรมได้ง่าย",
-        "ทำงานได้เร็วกว่า 10 ถึง 100 เท่า",
-        "ใช้พื้นที่หน่วยความจำน้อยกว่ามาก",
-        "ไม่ต้องใช้ซอร์สโค้ดในการทำงาน"
-      ],
-      "answer": 0,
-      "explanation": "Interpreter มักจะแสดงข้อผิดพลาดระหว่างรันได้ทันทีและง่ายต่อการพัฒนาโปรแกรม"
-    },
-    {
-      "question": "Hybrid Implementation Systems หมายถึงอะไร",
-      "options": [
-        "แปลซอร์สโค้ดเป็น Intermediate language (เช่น Bytecode) ก่อนนำไปแปลด้วย Interpreter",
-        "ใช้ทั้ง Windows และ Linux พร้อมกัน",
-        "รันโปรแกรมบน CPU หลายตัวพร้อมกัน",
-        "การแปลเป็นภาษาเครื่องโดยตรง"
-      ],
-      "answer": 0,
-      "explanation": "Hybrid implementation เป็นการนำข้อดีของ compiler และ interpreter มาผสมกัน เช่น Java แปลเป็น Bytecode แล้วรันบน JVM"
-    },
-    {
-      "question": "ตัวอย่างใดคือ Syntax error",
-      "options": [
-        "เขียน x = x + u; โดยที่ u ยังไม่นิยาม",
-        "พิมพ์ กิน ข้าว คน แทนที่จะเป็น คน กิน ข้าว",
-        "หารด้วยศูนย์",
-        "ลืมปิดไฟล์"
-      ],
-      "answer": 1,
-      "explanation": "Syntax error คือการเขียนผิดไวยากรณ์ของภาษา เช่น กิน ข้าว คน"
-    },
-    {
-      "question": "Semantics ในภาษาโปรแกรมหมายถึงอะไร",
-      "options": [
-        "ความหมายของการทำงานของชุดคำสั่ง",
-        "โครงสร้างไวยากรณ์",
-        "การแปลภาษา",
-        "ความเร็วในการประมวลผล"
-      ],
-      "answer": 0,
-      "explanation": "Semantics คือความหมายหรือการทำงานที่ถูกต้องของโปรแกรม"
-    },
-    {
-      "question": "ภาษาใดถูกออกแบบมาเพื่องานด้านปัญญาประดิษฐ์ (AI) และใช้สถาปัตยกรรมแบบ Functional",
-      "options": [
-        "LISP",
-        "FORTRAN",
-        "COBOL",
-        "C"
-      ],
-      "answer": 0,
-      "explanation": "LISP เป็นภาษา Functional รุ่นแรกๆ นิยมใช้ในงาน AI"
-    },
-    {
-      "question": "ลักษณะเด่นของ Object-Oriented Paradigm คือข้อใด",
-      "options": [
-        "นำ Data และ Behavior มารวมกันเป็น Object",
-        "ไม่มีตัวแปรที่เปลี่ยนค่าได้ (Immutable)",
-        "ใช้การพิสูจน์ทางคณิตศาสตร์",
-        "เน้นไปที่การประกาศผลลัพธ์ (Declarative)"
-      ],
-      "answer": 0,
-      "explanation": "OOP เน้นการสร้าง Object ที่ประกอบด้วยข้อมูลและพฤติกรรม"
-    },
-    {
-      "question": "von Neumann architecture ประกอบด้วยอะไรเป็นหลัก",
-      "options": [
-        "Memory, CPU (ALU, Control)",
-        "Harddisk, SSD",
-        "Monitor, Keyboard",
-        "OS, Application"
-      ],
-      "answer": 0,
-      "explanation": "von Neumann มี Memory และ CPU ที่ประกอบด้วย ALU และ Control unit"
-    },
-    {
-      "question": "คำสั่งใดต่อไปนี้เป็นลักษณะของ Imperative Programming",
-      "options": [
-        "ระบุลำดับขั้นตอนชัดเจน",
-        "ใช้กฎทางตรรกะ",
-        "ไม่มีการเปลี่ยนค่าตัวแปร",
-        "เน้นการเรียกซ้ำ (recursive)"
-      ],
-      "answer": 0,
-      "explanation": "Imperative programming เป็นการสั่งงานแบบระบุขั้นตอน (how) และใช้ mutable variables"
-    },
-    {
-      "question": "Prolog จัดอยู่ใน Programming Paradigm แบบใด",
-      "options": [
-        "Logic",
-        "Imperative",
-        "Functional",
-        "Object-Oriented"
-      ],
-      "answer": 0,
-      "explanation": "Prolog เป็นภาษาแบบ Logic Programming"
-    },
-    {
-      "question": "ขั้นตอนใดในกระบวนการแปลภาษา (Compilation) ทำหน้าที่แปลงตัวอักษรเป็น lexical units",
-      "options": [
-        "Lexical analysis",
-        "Syntax analysis",
-        "Semantic analysis",
-        "Code generation"
-      ],
-      "answer": 0,
-      "explanation": "Lexical analysis หรือ Scanner ทำหน้าที่นี้"
-    },
-    {
-      "question": "ข้อใดคือข้อดีของ Interpreter เมื่อเทียบกับ Compiler",
-      "options": [
-        "แสดงข้อผิดพลาด (Run-time error) ได้ทันทีและพัฒนาโปรแกรมได้ง่าย",
-        "ทำงานได้เร็วกว่า 10 ถึง 100 เท่า",
-        "ใช้พื้นที่หน่วยความจำน้อยกว่ามาก",
-        "ไม่ต้องใช้ซอร์สโค้ดในการทำงาน"
-      ],
-      "answer": 0,
-      "explanation": "Interpreter มักจะแสดงข้อผิดพลาดระหว่างรันได้ทันทีและง่ายต่อการพัฒนาโปรแกรม"
-    },
-    {
-      "question": "Hybrid Implementation Systems หมายถึงอะไร",
-      "options": [
-        "แปลซอร์สโค้ดเป็น Intermediate language (เช่น Bytecode) ก่อนนำไปแปลด้วย Interpreter",
-        "ใช้ทั้ง Windows และ Linux พร้อมกัน",
-        "รันโปรแกรมบน CPU หลายตัวพร้อมกัน",
-        "การแปลเป็นภาษาเครื่องโดยตรง"
-      ],
-      "answer": 0,
-      "explanation": "Hybrid implementation เป็นการนำข้อดีของ compiler และ interpreter มาผสมกัน เช่น Java แปลเป็น Bytecode แล้วรันบน JVM"
-    },
-    {
-      "question": "ตัวอย่างใดคือ Syntax error",
-      "options": [
-        "เขียน x = x + u; โดยที่ u ยังไม่นิยาม",
-        "พิมพ์ กิน ข้าว คน แทนที่จะเป็น คน กิน ข้าว",
-        "หารด้วยศูนย์",
-        "ลืมปิดไฟล์"
-      ],
-      "answer": 1,
-      "explanation": "Syntax error คือการเขียนผิดไวยากรณ์ของภาษา เช่น กิน ข้าว คน"
-    },
-    {
-      "question": "Semantics ในภาษาโปรแกรมหมายถึงอะไร",
-      "options": [
-        "ความหมายของการทำงานของชุดคำสั่ง",
-        "โครงสร้างไวยากรณ์",
-        "การแปลภาษา",
-        "ความเร็วในการประมวลผล"
-      ],
-      "answer": 0,
-      "explanation": "Semantics คือความหมายหรือการทำงานที่ถูกต้องของโปรแกรม"
-    },
-    {
-      "question": "ภาษาใดถูกออกแบบมาเพื่องานด้านปัญญาประดิษฐ์ (AI) และใช้สถาปัตยกรรมแบบ Functional",
-      "options": [
-        "LISP",
-        "FORTRAN",
-        "COBOL",
-        "C"
-      ],
-      "answer": 0,
-      "explanation": "LISP เป็นภาษา Functional รุ่นแรกๆ นิยมใช้ในงาน AI"
-    },
-    {
-      "question": "ลักษณะเด่นของ Object-Oriented Paradigm คือข้อใด",
-      "options": [
-        "นำ Data และ Behavior มารวมกันเป็น Object",
-        "ไม่มีตัวแปรที่เปลี่ยนค่าได้ (Immutable)",
-        "ใช้การพิสูจน์ทางคณิตศาสตร์",
-        "เน้นไปที่การประกาศผลลัพธ์ (Declarative)"
-      ],
-      "answer": 0,
-      "explanation": "OOP เน้นการสร้าง Object ที่ประกอบด้วยข้อมูลและพฤติกรรม"
-    },
-    {
-      "question": "von Neumann architecture ประกอบด้วยอะไรเป็นหลัก",
-      "options": [
-        "Memory, CPU (ALU, Control)",
-        "Harddisk, SSD",
-        "Monitor, Keyboard",
-        "OS, Application"
-      ],
-      "answer": 0,
-      "explanation": "von Neumann มี Memory และ CPU ที่ประกอบด้วย ALU และ Control unit"
-    },
-    {
-      "question": "คำสั่งใดต่อไปนี้เป็นลักษณะของ Imperative Programming",
-      "options": [
-        "ระบุลำดับขั้นตอนชัดเจน",
-        "ใช้กฎทางตรรกะ",
-        "ไม่มีการเปลี่ยนค่าตัวแปร",
-        "เน้นการเรียกซ้ำ (recursive)"
-      ],
-      "answer": 0,
-      "explanation": "Imperative programming เป็นการสั่งงานแบบระบุขั้นตอน (how) และใช้ mutable variables"
-    },
-    {
-      "question": "Prolog จัดอยู่ใน Programming Paradigm แบบใด",
-      "options": [
-        "Logic",
-        "Imperative",
-        "Functional",
-        "Object-Oriented"
-      ],
-      "answer": 0,
-      "explanation": "Prolog เป็นภาษาแบบ Logic Programming"
-    },
-    {
-      "question": "ขั้นตอนใดในกระบวนการแปลภาษา (Compilation) ทำหน้าที่แปลงตัวอักษรเป็น lexical units",
-      "options": [
-        "Lexical analysis",
-        "Syntax analysis",
-        "Semantic analysis",
-        "Code generation"
-      ],
-      "answer": 0,
-      "explanation": "Lexical analysis หรือ Scanner ทำหน้าที่นี้"
-    },
-    {
-      "question": "ข้อใดคือข้อดีของ Interpreter เมื่อเทียบกับ Compiler",
-      "options": [
-        "แสดงข้อผิดพลาด (Run-time error) ได้ทันทีและพัฒนาโปรแกรมได้ง่าย",
-        "ทำงานได้เร็วกว่า 10 ถึง 100 เท่า",
-        "ใช้พื้นที่หน่วยความจำน้อยกว่ามาก",
-        "ไม่ต้องใช้ซอร์สโค้ดในการทำงาน"
-      ],
-      "answer": 0,
-      "explanation": "Interpreter มักจะแสดงข้อผิดพลาดระหว่างรันได้ทันทีและง่ายต่อการพัฒนาโปรแกรม"
-    },
-    {
-      "question": "Hybrid Implementation Systems หมายถึงอะไร",
-      "options": [
-        "แปลซอร์สโค้ดเป็น Intermediate language (เช่น Bytecode) ก่อนนำไปแปลด้วย Interpreter",
-        "ใช้ทั้ง Windows และ Linux พร้อมกัน",
-        "รันโปรแกรมบน CPU หลายตัวพร้อมกัน",
-        "การแปลเป็นภาษาเครื่องโดยตรง"
-      ],
-      "answer": 0,
-      "explanation": "Hybrid implementation เป็นการนำข้อดีของ compiler และ interpreter มาผสมกัน เช่น Java แปลเป็น Bytecode แล้วรันบน JVM"
-    },
-    {
-      "question": "ตัวอย่างใดคือ Syntax error",
-      "options": [
-        "เขียน x = x + u; โดยที่ u ยังไม่นิยาม",
-        "พิมพ์ กิน ข้าว คน แทนที่จะเป็น คน กิน ข้าว",
-        "หารด้วยศูนย์",
-        "ลืมปิดไฟล์"
-      ],
-      "answer": 1,
-      "explanation": "Syntax error คือการเขียนผิดไวยากรณ์ของภาษา เช่น กิน ข้าว คน"
-    },
-    {
-      "question": "Semantics ในภาษาโปรแกรมหมายถึงอะไร",
-      "options": [
-        "ความหมายของการทำงานของชุดคำสั่ง",
-        "โครงสร้างไวยากรณ์",
-        "การแปลภาษา",
-        "ความเร็วในการประมวลผล"
-      ],
-      "answer": 0,
-      "explanation": "Semantics คือความหมายหรือการทำงานที่ถูกต้องของโปรแกรม"
-    },
-    {
-      "question": "ภาษาใดถูกออกแบบมาเพื่องานด้านปัญญาประดิษฐ์ (AI) และใช้สถาปัตยกรรมแบบ Functional",
-      "options": [
-        "LISP",
-        "FORTRAN",
-        "COBOL",
-        "C"
-      ],
-      "answer": 0,
-      "explanation": "LISP เป็นภาษา Functional รุ่นแรกๆ นิยมใช้ในงาน AI"
-    },
-    {
-      "question": "ลักษณะเด่นของ Object-Oriented Paradigm คือข้อใด",
-      "options": [
-        "นำ Data และ Behavior มารวมกันเป็น Object",
-        "ไม่มีตัวแปรที่เปลี่ยนค่าได้ (Immutable)",
-        "ใช้การพิสูจน์ทางคณิตศาสตร์",
-        "เน้นไปที่การประกาศผลลัพธ์ (Declarative)"
-      ],
-      "answer": 0,
-      "explanation": "OOP เน้นการสร้าง Object ที่ประกอบด้วยข้อมูลและพฤติกรรม"
-    },
-    {
-      "question": "ในสถาปัตยกรรมระบบปฏิบัติการแบบ Microkernel ข้อใดคือผลกระทบหลักเมื่อเทียบกับ Monolithic Kernel ในแง่ของประสิทธิภาพและความปลอดภัย?",
-      "options": [
-        "ประสิทธิภาพสูงกว่าแต่ความปลอดภัยต่ำกว่า",
-        "ประสิทธิภาพต่ำกว่าแต่ความปลอดภัยสูงกว่า",
-        "ทั้งประสิทธิภาพและความปลอดภัยสูงกว่า",
-        "ทั้งประสิทธิภาพและความปลอดภัยต่ำกว่า"
-      ],
-      "answer": 1,
-      "explanation": "Microkernel แยก Service ต่างๆ ออกจาก Kernel space ไปยัง User space ทำให้ปลอดภัยกว่า (ถ้า service พัง ไม่กระทบระบบ) แต่มีการเรียกข้ามโหมด (Context Switch) บ่อย ทำให้ช้ากว่า"
-    },
-    {
-      "question": "ระบบปฏิบัติการใดเหมาะสมที่สุดสำหรับระบบ Real-time (RTOS) ที่ใช้ในเครื่องมือแพทย์?",
-      "options": [
-        "ระบบที่เน้น Throughput สูงสุด",
-        "ระบบที่มี Latency คงที่และคาดการณ์ได้",
-        "ระบบที่ใช้ทรัพยากรหน่วยความจำต่ำสุด",
-        "ระบบที่รองรับผู้ใช้จำนวนมากพร้อมกัน"
-      ],
-      "answer": 1,
-      "explanation": "RTOS ต้องมีการตอบสนองภายในเวลาที่กำหนดอย่างแม่นยำ (Deterministic Latency) ซึ่งสำคัญกว่าปริมาณงาน (Throughput)"
-    },
-    {
-      "question": "หากเกิด Thrashing ในระบบหน่วยความจำเสมือน (Virtual Memory) ผู้ดูแลระบบควรแก้ปัญหาอย่างไรเป็นอันดับแรก?",
-      "options": [
-        "เพิ่มความเร็วของ CPU",
-        "ลดขนาดของ Page file",
-        "เพิ่มหน่วยความจำหลัก (RAM)",
-        "เปลี่ยนไปใช้ระบบปฏิบัติการ 64-bit"
-      ],
-      "answer": 2,
-      "explanation": "Thrashing เกิดจากการที่ระบบใช้เวลาส่วนใหญ่ในการสลับเพจระหว่าง RAM กับ Disk การเพิ่ม RAM จะลดการเกิด Page Fault ได้โดยตรง"
-    },
-    {
-      "question": "การจัดการ Process แบบ Preemptive ต่างจาก Non-preemptive อย่างไรในสถานการณ์ที่มี Process สำคัญเข้ามา?",
-      "options": [
-        "Preemptive จะหยุด Process ปัจจุบันเพื่อรัน Process สำคัญทันที",
-        "Non-preemptive จะแทรก Process สำคัญทำงานคู่ขนาน",
-        "Preemptive จะรอให้ Process ปัจจุบันเสร็จก่อน",
-        "ไม่มีความแตกต่างในด้านความเร็วการตอบสนอง"
-      ],
-      "answer": 0,
-      "explanation": "Preemptive อนุญาตให้ OS ดึง CPU คืนจาก Process ที่กำลังรันอยู่ เพื่อให้ Process ที่มี Priority สูงกว่าได้ทำงานทันที"
-    },
-    {
-      "question": "ข้อใดอธิบายสถานะ 'Deadlock' ได้ถูกต้องที่สุดในการใช้งานทรัพยากรร่วมกัน?",
-      "options": [
-        "Process หนึ่งใช้ CPU หนักจน Process อื่นไม่ได้ทำงาน",
-        "Process สองตัวขึ้นไปรอทรัพยากรที่อีกฝ่ายถือครองอยู่และไม่มีใครยอมปล่อย",
-        "ระบบหน่วยความจำเต็มจนไม่สามารถรัน Process ใหม่ได้",
-        "การชนกันของข้อมูลในฮาร์ดดิสก์ทำให้ระบบหยุดทำงาน"
-      ],
-      "answer": 1,
-      "explanation": "Deadlock คือภาวะชะงักงันที่ Process ต่างๆ ถือทรัพยากรส่วนหนึ่งไว้และรอทรัพยากรที่อีก Process ถืออยู่ ทำให้ไม่สามารถไปต่อได้"
-    },
-    {
-      "question": "กลไกใดของระบบปฏิบัติการที่ช่วยป้องกันไม่ให้ Process หนึ่งเข้าไปเขียนข้อมูลในพื้นที่หน่วยความจำของ Process อื่น?",
-      "options": [
-        "Memory Management Unit (MMU)",
-        "Direct Memory Access (DMA)",
-        "Interrupt Handler",
-        "Context Switching"
-      ],
-      "answer": 0,
-      "explanation": "MMU เป็นฮาร์ดแวร์ที่ทำหน้าที่แปลง Logical Address เป็น Physical Address และตรวจสอบสิทธิ์การเข้าถึงหน่วยความจำ"
-    },
-    {
-      "question": "การใช้ Thread หลายตัวใน Process เดียวกัน (Multithreading) มีข้อควรระวังเรื่องใดมากที่สุด?",
-      "options": [
-        "การบริโภคหน่วยความจำหลัก",
-        "ความซับซ้อนในการจัดการเวลาของ CPU",
-        "ปัญหา Race Condition จากการใช้ตัวแปรแบบ Global ร่วมกัน",
-        "การเกิด Page Fault สูงขึ้น"
-      ],
-      "answer": 2,
-      "explanation": "Thread ใน Process เดียวกันจะแชร์หน่วยความจำส่วน Data และ Heap ทำให้เสี่ยงต่อการเกิด Race Condition หากไม่ใช้กลไก Synchronization"
-    },
-    {
-      "question": "คำสั่ง System Call ทำหน้าที่อะไรในระบบคอมพิวเตอร์?",
-      "options": [
-        "เป็นช่องทางที่โปรแกรมประยุกต์ใช้ร้องขอบริการจากระบบปฏิบัติการ",
-        "เป็นคำสั่งสำหรับปิดเครื่อง",
-        "เป็นคำสั่งที่ CPU ใช้ควบคุมอุปกรณ์ I/O",
-        "เป็นโปรแกรมสำหรับสแกนไวรัสในระบบ"
-      ],
-      "answer": 0,
-      "explanation": "System Call เป็น API ระดับล่างสุดที่ให้ User Program ร้องขอให้ Kernel ทำงานที่ต้องใช้สิทธิพิเศษให้ เช่น อ่านไฟล์ สร้าง Process"
-    },
-    {
-      "question": "อัลกอริทึมการจัดตารางเวลาแบบ Round Robin เหมาะสมกับระบบแบบใดมากที่สุด?",
-      "options": [
-        "ระบบ Batch Processing",
-        "ระบบ Time-Sharing",
-        "ระบบ Real-time",
-        "ระบบ Single-tasking"
-      ],
-      "answer": 1,
-      "explanation": "Round Robin ให้เวลา CPU แก่แต่ละ Process เท่าๆ กันเป็นรอบ ทำให้ผู้ใช้หลายคนรู้สึกว่าระบบตอบสนองได้รวดเร็วและพร้อมกัน"
-    },
-    {
-      "question": "โครงสร้างไดเรกทอรีแบบใดที่อนุญาตให้มีลิงก์ข้ามไปยังไฟล์อื่นได้ และอาจเกิดปัญหาลูป (Cycle)?",
-      "options": [
-        "Tree-Structured",
-        "Two-Level",
-        "Acyclic-Graph",
-        "General Graph"
+        "รหัสเลขฐานสองที่เขียนขึ้นเพื่อควบคุมวงจรอิเล็กทรอนิกส์ใน CPU เท่านั้น",
+        "ภาษาธรรมชาติที่มนุษย์ใช้สื่อสารกับฮาร์ดแวร์โดยตรงโดยไม่ต้องแปล",
+        "ชุดคำสั่งสำเร็จรูปที่ไม่สามารถปรับเปลี่ยนหรือคำนวณอัลกอริทึมใหม่ได้",
+        "ภาษาประดิษฐ์ที่ถูกออกแบบขึ้นเพื่ออธิบายการคำนวณหรืออัลกอริทึมที่คอมพิวเตอร์สามารถทำงานได้"
       ],
       "answer": 3,
-      "explanation": "General Graph อนุญาตให้สร้างลิงก์ (Link) ไปยังไดเรกทอรีใดก็ได้ ทำให้มีโอกาสเกิดวงวน (Cycle) ในการค้นหาไฟล์"
+      "explanation": "ตามนิยามในสไลด์ (อ้างอิง Wikipedia) Programming language คือ artificial language ที่ออกแบบมาเพื่อ express computations หรือ algorithms ที่คอมพิวเตอร์สามารถประมวลผลได้"
     },
     {
-      "question": "ข้อใดไม่ใช่หน้าที่หลักของระบบปฏิบัติการ?",
+      "question": "โปรแกรม (Program) ที่ถูกเขียนขึ้นจากอัลกอริทึม มีองค์ประกอบการทำงานหลัก 3 ส่วนตามข้อใด?",
       "options": [
-        "การจัดการโปรเซสและซีพียู",
-        "การแปลภาษาโปรแกรม (Compiler)",
-        "การจัดการหน่วยความจำ",
-        "การจัดการระบบไฟล์"
-      ],
-      "answer": 1,
-      "explanation": "การแปลภาษาโปรแกรมเป็นหน้าที่ของซอฟต์แวร์ระบบประเภท Compiler/Interpreter ไม่ใช่หน้าที่หลักของตัวระบบปฏิบัติการเอง"
-    },
-    {
-      "question": "Virtual Machine แตกต่างจาก Container อย่างไร?",
-      "options": [
-        "Container จำลองฮาร์ดแวร์ทั้งหมด แต่ VM จำลองแค่ OS",
-        "VM ต้องมี Guest OS ของตัวเอง แต่ Container ใช้ OS Kernel ร่วมกับ Host",
-        "VM ทำงานเร็วกว่า Container เสมอ",
-        "Container ใช้พื้นที่เก็บข้อมูลมากกว่า VM"
-      ],
-      "answer": 1,
-      "explanation": "VM แต่ละตัวต้องมี OS ของตัวเอง (Guest OS) ทำให้ใหญ่และช้ากว่า Container ที่แชร์ Kernel ของเครื่องโฮสต์ (Host OS)"
-    },
-    {
-      "question": "ในการจัดการไฟล์แบบ FAT32 ปัญหาหลักที่พบเมื่อเทียบกับ NTFS คืออะไร?",
-      "options": [
-        "ไม่รองรับการเข้ารหัสไฟล์และขนาดไฟล์เกิน 4GB",
-        "ทำงานช้ากว่ามากในแฟลชไดรฟ์",
-        "ใช้พลังงานในการอ่านเขียนมากกว่า",
-        "เข้ากันไม่ได้กับระบบปฏิบัติการรุ่นเก่า"
-      ],
-      "answer": 0,
-      "explanation": "FAT32 มีข้อจำกัดทางสถาปัตยกรรมที่ไม่สามารถเก็บไฟล์ที่มีขนาดใหญ่กว่า 4GB ได้ และไม่มีระบบรักษาความปลอดภัยเช่น NTFS"
-    },
-    {
-      "question": "ความสัมพันธ์ระหว่าง Spooling และ Buffering เป็นอย่างไร?",
-      "options": [
-        "เป็นสิ่งเดียวกัน",
-        "Spooling ใช้พื้นที่บนดิสก์เพื่อพักข้อมูลสำหรับอุปกรณ์ที่ทำงานช้า ส่วน Buffering ใช้ RAM",
-        "Spooling ใช้ RAM ส่วน Buffering ใช้ดิสก์",
-        "ใช้เฉพาะในการประมวลผลกราฟิก"
-      ],
-      "answer": 1,
-      "explanation": "Spooling (เช่น เครื่องพิมพ์) ใช้ดิสก์เพื่อรับข้อมูลขนาดใหญ่แทนเครื่องพิมพ์ที่ช้า ขณะที่ Buffering ใช้หน่วยความจำหลักเพื่อลดความต่างของความเร็วระหว่าง CPU กับ I/O"
-    },
-    {
-      "question": "การจัดการหน่วยความจำแบบ Paging แก้ปัญหาใดของระบบ?",
-      "options": [
-        "Internal Fragmentation",
-        "External Fragmentation",
-        "Thrashing",
-        "Race Condition"
-      ],
-      "answer": 1,
-      "explanation": "Paging แบ่งหน่วยความจำออกเป็นหน้า (Page) ขนาดเท่าๆ กัน ทำให้สามารถจัดสรรหน่วยความจำแบบไม่ต่อเนื่องได้ จึงแก้ปัญหา External Fragmentation"
-    },
-    {
-      "question": "เพราะเหตุใดจึงเกิด Internal Fragmentation ขึ้นในการจัดการหน่วยความจำแบบ Paging?",
-      "options": [
-        "เพราะ Process ใช้พื้นที่น้อยกว่าขนาดของ 1 Page ที่จัดสรรให้ในหน้าสุดท้าย",
-        "เพราะหน่วยความจำถูกแบ่งเป็นส่วนย่อยมากเกินไป",
-        "เพราะ OS ไม่สามารถย้าย Process ได้",
-        "เพราะฮาร์ดดิสก์มีพื้นที่ไม่พอ"
-      ],
-      "answer": 0,
-      "explanation": "เนื่องจาก Paging จัดสรรพื้นที่เป็นบล็อกคงที่ (เช่น 4KB) หาก Process ต้องการพื้นที่ 5KB จะได้ไป 2 Pages (8KB) จึงเหลือพื้นที่สูญเปล่าในหน้าสุดท้าย 3KB"
-    },
-    {
-      "question": "เทคนิค DMA (Direct Memory Access) ช่วยเพิ่มประสิทธิภาพระบบได้อย่างไร?",
-      "options": [
-        "เพิ่มความเร็ว Clock ของ CPU",
-        "อนุญาตให้อุปกรณ์ I/O ถ่ายโอนข้อมูลกับหน่วยความจำได้โดยตรง ไม่ต้องผ่าน CPU ทุกไบต์",
-        "เพิ่มขนาดความจุของ RAM",
-        "ลดเวลาในการทำ Context Switch"
-      ],
-      "answer": 1,
-      "explanation": "DMA ทำให้ CPU ว่างไปประมวลผลงานอื่นระหว่างที่มีการอ่านเขียนข้อมูลปริมาณมากระหว่าง I/O กับ Memory"
-    },
-    {
-      "question": "ในบริบทของระบบรักษาความปลอดภัย Principle of Least Privilege หมายถึงอะไร?",
-      "options": [
-        "ให้ผู้ใช้ทุกคนมีสิทธิสูงสุดเพื่อให้ทำงานสะดวก",
-        "ให้ Process มีสิทธิเท่าที่จำเป็นต่อการทำงานให้สำเร็จเท่านั้น",
-        "การเข้ารหัสไฟล์ข้อมูลทั้งหมดในดิสก์",
-        "การห้ามผู้ใช้เข้าถึงระบบผ่านเครือข่ายภายนอก"
-      ],
-      "answer": 1,
-      "explanation": "หลักการให้สิทธิขั้นต่ำที่จำเป็น ช่วยจำกัดความเสียหายหากโปรแกรมนั้นถูกโจมตีหรือมีข้อผิดพลาด"
-    },
-    {
-      "question": "ข้อใดเป็นข้อเสียของการใช้ Polling เมื่อเปรียบเทียบกับ Interrupt ในการจัดการ I/O?",
-      "options": [
-        "ทำให้ CPU สูญเสียรอบการทำงานไปกับการตรวจสอบสถานะเปล่าๆ (Busy-waiting)",
-        "การตอบสนองช้ากว่าเมื่อมีเหตุการณ์สำคัญ",
-        "เขียนโปรแกรมควบคุมได้ยากกว่า",
-        "ต้องใช้ฮาร์ดแวร์ควบคุมที่ซับซ้อนกว่า"
-      ],
-      "answer": 0,
-      "explanation": "Polling คือการที่ CPU ต้องคอยวนรอบเช็คสถานะอุปกรณ์เรื่อยๆ ทำให้เปลืองเวลาประมวลผลไปโดยเปล่าประโยชน์"
-    },
-    {
-      "question": "อุปกรณ์ใดที่เชื่อมต่อระหว่างระบบปฏิบัติการและฮาร์ดแวร์เฉพาะทาง?",
-      "options": [
-        "Application Software",
-        "Device Driver",
-        "Compiler",
-        "GUI"
-      ],
-      "answer": 1,
-      "explanation": "Device Driver ทำหน้าที่เป็นตัวกลางแปลคำสั่งจากระบบปฏิบัติการให้อยู่ในรูปแบบที่ฮาร์ดแวร์นั้นๆ เข้าใจได้"
-    },
-    {
-      "question": "อะไรคือความแตกต่างของ GUI และ CLI?",
-      "options": [
-        "GUI ใช้คำสั่งตัวอักษร, CLI ใช้ภาพ",
-        "GUI ใช้งานยากกว่า CLI",
-        "GUI ใช้กราฟิกในการโต้ตอบ, CLI พิมพ์คำสั่งแบบข้อความ",
-        "CLI มีเฉพาะในระบบปฏิบัติการรุ่นเก่าเท่านั้น"
+        "รับข้อมูล (Input), บันทึกลงฮาร์ดดิสก์ (Save), และปิดเครื่อง (Shutdown)",
+        "เขียนโค้ด (Coding), ทดสอบระบบ (Testing), และส่งมอบงาน (Deployment)",
+        "รับข้อมูลนำเข้า (Input), คำนวณประมวลผล (Calculations), และส่งผลลัพธ์ออก (Output)",
+        "สร้างหน่วยความจำ (Memory), ตรวจสอบไวรัส (Security), และจัดเก็บไฟล์ (Storage)"
       ],
       "answer": 2,
-      "explanation": "GUI (Graphical User Interface) ใช้ไอคอนและหน้าต่าง ส่วน CLI (Command Line Interface) ผู้ใช้ต้องพิมพ์คำสั่ง"
+      "explanation": "สไลด์หน้า 1 ระบุว่า Program คือ computer coding ของ algorithm ที่ 1. Takes input 2. Performs some calculations on the input 3. Generates output"
     },
     {
-      "question": "ข้อใดอธิบาย Boot process ได้ถูกต้อง",
+      "question": "คุณสมบัติสำคัญของ Stored-Program Concept ในสถาปัตยกรรม von Neumann คือข้อใด?",
       "options": [
-        "เริ่มจาก RAM ส่งสัญญาณไป CPU",
-        "BIOS/UEFI ทำการ POST แล้วโหลด OS จาก Disk เข้าสู่ RAM",
-        "OS โหลดข้อมูลจาก Network เข้า CPU",
-        "CPU ตรวจสอบหน้าจอก่อนเป็นอันดับแรก"
+        "โปรแกรมต้องถูกบันทึกลงในฮาร์ดดิสก์เท่านั้น ห้ามโหลดลงหน่วยความจำหลัก",
+        "คำสั่งแต่ละคำสั่งจะถูกส่งตรงจากคีย์บอร์ดไปยัง ALU โดยไม่ผ่านหน่วยความจำ",
+        "โปรแกรมและข้อมูลจะต้องถูกแยกเก็บไว้ในหน่วยความจำคนละตัวอย่างเด็ดขาด",
+        "ทั้งโปรแกรม (Instructions) และข้อมูล (Data) จะถูกจัดเก็บอยู่ในหน่วยความจำ (Memory) เดียวกัน"
       ],
-      "answer": 1,
-      "explanation": "เมื่อเปิดเครื่อง BIOS/UEFI จะทำการ Power-On Self-Test (POST) จากนั้นจะค้นหาตัวโหลดระบบปฏิบัติการ (Bootloader) ในดิสก์เพื่อดึง OS ขึ้นสู่ RAM"
+      "answer": 3,
+      "explanation": "สไลด์หน้า 6 ระบุคุณลักษณะหลักของ von Neumann Architecture ว่า 'Data and programs stored in memory' และส่งผ่าน memory เข้าสู่ CPU"
     },
     {
-      "question": "ในระบบ Linux คำสั่งใดใช้สำหรับเปลี่ยนสิทธิการเข้าถึงไฟล์?",
+      "question": "ในวงรอบการทำงานของ von Neumann ตัวนับโปรแกรม (Program Counter: PC) มีหน้าที่อะไร?",
       "options": [
-        "chown",
-        "chmod",
-        "ls",
-        "grep"
-      ],
-      "answer": 1,
-      "explanation": "chmod (Change Mode) ใช้เปลี่ยนสิทธิ์ (Read/Write/Execute) ของไฟล์ในระบบ Unix/Linux"
-    },
-    {
-      "question": "การทำ RAID (Redundant Array of Independent Disks) มีวัตถุประสงค์หลักเพื่ออะไร (ยกเว้น RAID 0)?",
-      "options": [
-        "เพิ่มความจุให้ถึงขีดสุดเท่านั้น",
-        "ลดราคาของฮาร์ดดิสก์",
-        "เพิ่มความทนทานต่อความเสียหายของข้อมูล (Fault Tolerance) หรือประสิทธิภาพ",
-        "ลดการใช้พลังงานไฟฟ้า"
+        "นับจำนวนรอบทั้งหมดที่ CPU ทำงานตั้งแต่เปิดเครื่อง",
+        "เก็บผลลัพธ์ของการคำนวณทางคณิตศาสตร์จาก ALU",
+        "เก็บแอดเดรสของคำสั่งถัดไปที่รอการดึงมาประมวลผล",
+        "ตรวจสอบว่าเกิด Error ในโปรแกรมหรือไม่"
       ],
       "answer": 2,
-      "explanation": "RAID ส่วนใหญ่ (เช่น 1, 5, 10) ออกแบบมาเพื่อให้ระบบสามารถทำงานต่อได้หากดิสก์บางตัวพัง โดยมีการสำรองข้อมูล"
+      "explanation": "Program Counter (PC) เป็นรีจิสเตอร์ที่ทำหน้าที่ชี้ไปยังคำสั่งถัดไป (Point to the next instruction) ในหน่วยความจำที่จะถูก Fetch เข้ามา"
     },
     {
-      "question": "ข้อใดคือลักษณะเด่นของ Open Source Operating System?",
+      "question": "ลำดับขั้นตอนใน 1 รอบของ Fetch-Execute Cycle ของสถาปัตยกรรม von Neumann คือข้อใด?",
       "options": [
-        "ต้องเสียค่าลิขสิทธิ์ราคาสูง",
-        "สามารถเข้าถึงและแก้ไข Source code ได้",
-        "ไม่สามารถใช้งานเชิงพาณิชย์ได้เลย",
-        "มีการรับประกันความเสียหายจากบริษัทผู้ผลิตเสมอ"
+        "Decode instruction -> Fetch instruction -> Execute instruction -> Increment PC",
+        "Increment PC -> Execute instruction -> Fetch instruction -> Decode instruction",
+        "Execute instruction -> Decode instruction -> Increment PC -> Fetch instruction",
+        "Fetch instruction -> Increment PC -> Decode instruction -> Execute instruction"
       ],
-      "answer": 1,
-      "explanation": "Open Source อนุญาตให้บุคคลทั่วไปสามารถดู แก้ไข และเผยแพร่รหัสต้นฉบับ (Source Code) ได้"
+      "answer": 3,
+      "explanation": "ตามสไลด์หน้า 6 ในลูป repeat forever ประกอบด้วย: 1. fetch the instruction pointed by PC 2. increment the counter 3. decode the instruction 4. execute the instruction"
     },
     {
-      "question": "ข้อใดคือประโยชน์ของ Cloud Operating System?",
+      "question": "คำว่า กระบวนทัศน์การเขียนโปรแกรม (Programming Paradigm) มีความหมายตรงกับข้อใดที่สุด?",
       "options": [
-        "ไม่ต้องเชื่อมต่ออินเทอร์เน็ต",
-        "ใช้ทรัพยากรฮาร์ดแวร์จากส่วนกลางผ่านเครือข่าย ทำให้ยืดหยุ่น",
-        "ทำงานเร็วกว่า Local OS 100%",
-        "ไม่ต้องมีการรักษาความปลอดภัย"
+        "เครื่องมือที่ใช้ในการตรวจจับข้อผิดพลาดของไวยากรณ์ในโปรแกรม",
+        "เวอร์ชันล่าสุดของภาษาโปรแกรมคอมพิวเตอร์",
+        "มาตรฐานความเร็วในการประมวลผลของตัวแปลภาษา",
+        "รูปแบบหรือสไตล์พื้นฐานในการเขียน จัดโครงสร้าง และวิธีคิดในการแก้ปัญหาด้วยโค้ด"
       ],
-      "answer": 1,
-      "explanation": "Cloud OS ช่วยให้จัดการทรัพยากรที่กระจายตัวอยู่ได้อย่างมีประสิทธิภาพ และรองรับการขยายตัว (Scalability) ได้ง่าย"
+      "answer": 3,
+      "explanation": "สไลด์หน้า 9 ระบุว่า Programming paradigm is a fundamental style or approach to programming that shapes how developers write, organize, and think about code."
     },
     {
-      "question": "ในระบบ Time-Sharing การที่ CPU เปลี่ยนการทำงานระหว่างโปรเซสอย่างรวดเร็ว เรียกว่าอะไร?",
+      "question": "ข้อใดอธิบายความแตกต่างระหว่าง Mutable variable และ Immutable variable ได้ถูกต้อง?",
       "options": [
-        "Multiprocessing",
-        "Context Switching",
-        "Paging",
-        "Booting"
-      ],
-      "answer": 1,
-      "explanation": "Context Switching คือกระบวนการบันทึกสถานะของ Process เก่าและโหลดสถานะของ Process ใหม่เข้าสู่ CPU"
-    },
-    {
-      "question": "กลไก Semaphore มีประโยชน์ในการแก้ปัญหาเรื่องใด?",
-      "options": [
-        "ความร้อนของ CPU",
-        "การแข่งขันแย่งทรัพยากร (Race Condition) ระหว่างโปรเซส/เธรด",
-        "การแตกกระจายของไฟล์บนดิสก์",
-        "การโจมตีจากแฮกเกอร์"
-      ],
-      "answer": 1,
-      "explanation": "Semaphore เป็นเครื่องมือซิงโครไนซ์ที่ใช้ควบคุมการเข้าถึง Critical Section เพื่อป้องกันไม่ให้ทำงานทับซ้อนกันจนข้อมูลผิดพลาด"
-    },
-    {
-      "question": "สถาปัตยกรรม 32-bit และ 64-bit มีความแตกต่างกันอย่างชัดเจนที่สุดในเรื่องใด?",
-      "options": [
-        "ความละเอียดของหน้าจอ",
-        "ความเร็วอินเทอร์เน็ต",
-        "ปริมาณหน่วยความจำ RAM ที่สามารถอ้างอิงและรองรับได้",
-        "ประเภทของภาษาโปรแกรมที่ใช้เขียน"
+        "Mutable variable ไม่เปลืองหน่วยความจำ ส่วน Immutable variable กินพื้นที่หน่วยความจำมหาศาล",
+        "Mutable variable ใช้เก็บเฉพาะตัวเลข ส่วน Immutable variable ใช้เก็บเฉพาะข้อความ",
+        "Mutable variable สามารถเปลี่ยนค่าหลังจากกำหนดได้ ส่วน Immutable variable ไม่สามารถเปลี่ยนค่าได้หลังจากกำหนดแล้ว",
+        "Mutable variable พบได้เฉพาะในภาษา Functional ส่วน Immutable variable พบได้ในภาษา Imperative"
       ],
       "answer": 2,
-      "explanation": "ระบบ 32-bit รองรับ RAM ได้สูงสุดประมาณ 4GB ส่วน 64-bit รองรับได้มหาศาล (หลาย TB) เนื่องจากขนาดของ Address Bus"
+      "explanation": "Mutable variable คือตัวแปรที่สามารถแก้ไขเปลี่ยนแปลงค่าในหน่วยความจำได้ตลอดการทำงาน ในขณะที่ Immutable variable ค่าจะคงที่ ไม่สามารถเปลี่ยนแปลงได้หลังจากกำหนดค่าแล้ว"
     },
     {
-      "question": "ไฟล์ที่มีนามสกุล .dll ในระบบปฏิบัติการ Windows คืออะไร?",
+      "question": "ภาษาประเภท Imperative Language มีความสัมพันธ์โดยตรงกับโครงสร้างใดของคอมพิวเตอร์?",
       "options": [
-        "ไฟล์เอกสารทั่วไป",
-        "Dynamic Link Library ซึ่งเก็บโค้ดหรือข้อมูลที่ใช้ร่วมกันได้หลายโปรแกรม",
-        "ไฟล์ซ่อนที่อันตราย",
-        "ไฟล์ระบบสำหรับหน้าจอเริ่มทำงาน"
+        "สถาปัตยกรรม Quantum Computer",
+        "ระบบฐานข้อมูลเชิงสัมพันธ์ (RDBMS)",
+        "สถาปัตยกรรม von Neumann (มี Memory, ALU และ Control Unit)",
+        "โครงสร้างเครือข่ายอินเทอร์เน็ตแบบกระจายศูนย์"
+      ],
+      "answer": 2,
+      "explanation": "สไลด์หน้า 17 แสดงผังว่า Imperative Language เชื่อมโยงและจำลองการทำงานโดยตรงมาจาก von Neumann Architecture ซึ่งประกอบด้วย Memory, ALU, Control"
+    },
+    {
+      "question": "ภาษา C จัดอยู่ในกระบวนทัศน์ (Paradigm) ใด และมีลักษณะการเขียนอย่างไร?",
+      "options": [
+        "Imperative Paradigm: เน้นการสั่งงานเป็นลำดับขั้นตอนเพื่อเปลี่ยนสถานะของหน่วยความจำ (How to do)",
+        "Logic Paradigm: เน้นการประกาศกฎและข้อเท็จจริงเพื่อให้ระบบค้นหาคำตอบ (What to do)",
+        "Functional Paradigm: เน้นการประเมินผลฟังก์ชันทางคณิตศาสตร์แบบไม่เปลี่ยนค่าตัวแปร",
+        "Concurrent Paradigm: บังคับให้ทุกฟังก์ชันทำงานขนานกันบนหลาย CPU เสมอ"
+      ],
+      "answer": 0,
+      "explanation": "ภาษา C เป็นภาษา Imperative ที่เขียนสั่งงานเป็นขั้นตอน (Step-by-step instructions) โดยมีการกำหนดค่าและแก้ไขตัวแปรในหน่วยความจำอย่างชัดเจน"
+    },
+    {
+      "question": "ภาษา Prolog จัดอยู่ในกระบวนทัศน์ใด และมีรูปแบบการทำงานอย่างไร?",
+      "options": [
+        "Object-Oriented Programming: สร้าง Class และสืบทอดคุณสมบัติของ Object",
+        "Low-level Assembly: สั่งงาน Register และ Address ของหน่วยความจำโดยตรง",
+        "Declarative / Logic Programming: เขียนด้วยข้อเท็จจริง (Facts) และกฎ (Rules) เพื่อค้นหาคำตอบ",
+        "Imperative Programming: สั่งให้ CPU ทำงานตามลำดับทีละบรรทัดด้วยลูป for/while"
+      ],
+      "answer": 2,
+      "explanation": "สไลด์หน้า 18 ระบุว่า Prolog จัดอยู่ใน Declarative / Logic programming ซึ่งโปรแกรมจะประกอบด้วยกฎและข้อเท็จจริงทางตรรกะ"
+    },
+    {
+      "question": "ภาษา LISP จัดอยู่ในกระบวนทัศน์ใด และมีลักษณะเด่นอย่างไร?",
+      "options": [
+        "Logic Programming: ใช้เครื่องหมายตรรกะในการพิสูจน์ทฤษฎีบท",
+        "Imperative Programming: ใช้จัดการอุปกรณ์ฮาร์ดแวร์และเขียนระบบปฏิบัติการ",
+        "Visual Programming: ใช้การลากบล็อกคำสั่งมาต่อกันเพื่อสร้างโปรแกรม",
+        "Functional Programming: นิยมใช้ในงาน AI และเน้นการคำนวณผ่านฟังก์ชันคณิตศาสตร์เป็นหลัก"
+      ],
+      "answer": 3,
+      "explanation": "สไลด์หน้า 18 จัด LISP อยู่ในกลุ่ม Functional Language ซึ่งถูกออกแบบมาสำหรับงาน AI และมีแนวคิดการคำนวณแบบฟังก์ชันทางคณิตศาสตร์"
+    },
+    {
+      "question": "ภาษาประเภท Concurrent Language ถูกออกแบบมาเพื่อตอบสนองการทำงานลักษณะใด?",
+      "options": [
+        "การสร้างกราฟิกและแอนิเมชันสำหรับเกม",
+        "การจัดเก็บข้อมูลแบบถาวรบนสื่อบันทึกข้อมูล",
+        "การแปลภาษาแบบใช้เวลาน้อยที่สุดบนเครื่องเดี่ยว",
+        "การประมวลผลคำสั่งหรือโปรเซสหลายงานพร้อมๆ กัน (Parallel / Concurrent execution)"
+      ],
+      "answer": 3,
+      "explanation": "Concurrent Language ออกแบบมาเพื่อจัดการการประมวลผลที่เกิดขึ้นพร้อมกันหรือขนานกัน (Concurrency) โดยจัดการ synchronization และการสื่อสารระหว่างโปรเซส"
+    },
+    {
+      "question": "ในยุค 1950s ถึงต้น 1960s (เช่น ภาษา FORTRAN) การออกแบบภาษาให้ความสำคัญกับสิ่งใดมากที่สุด?",
+      "options": [
+        "Data abstraction (การซ่อนและห่อหุ้มโครงสร้างข้อมูล)",
+        "Readability (ความง่ายของมนุษย์ในการอ่านโค้ด)",
+        "Machine efficiency (ประสิทธิภาพและความเร็วในการทำงานของเครื่องคอมพิวเตอร์)",
+        "Object-Oriented Programming (การเขียนโปรแกรมเชิงวัตถุ)"
+      ],
+      "answer": 2,
+      "explanation": "สไลด์หน้า 20 ระบุว่าช่วง 1950s and early 1960s โปรแกรมยังเรียบง่าย ข้อกังวลหลักคือ 'worry about machine efficiency (FORTRAN)' เนื่องจากคอมพิวเตอร์ยุคนั้นยังมีทรัพยากรจำกัดมาก"
+    },
+    {
+      "question": "ในช่วงปลายทศวรรษ 1960 (เช่น ภาษา ALGOL) การออกแบบภาษาเปลี่ยนทิศทางมาเน้นเรื่องใดเป็นสำคัญ?",
+      "options": [
+        "Network communication: รองรับการเชื่อมต่ออินเทอร์เน็ตความเร็วสูง",
+        "Cloud computing: รองรับการประมวลผลบนคลาวด์",
+        "Hardware efficiency: ตัดคำสั่งควบคุมทิ้งทั้งหมดเพื่อเพิ่มความเร็วเครื่อง",
+        "People efficiency: เน้นความง่ายในการอ่าน (Readability) และโครงสร้างควบคุมที่ดีขึ้น"
+      ],
+      "answer": 3,
+      "explanation": "สไลด์หน้า 20 ระบุว่า Late 1960s เปลี่ยนมาให้ความสำคัญกับ 'people efficiency important; readability, better control structures (ALGOL)'"
+    },
+    {
+      "question": "แนวคิดการออกแบบ Structured programming, Top-down design และ Step-wise refinement เริ่มมีบทบาทสำคัญในยุคใด?",
+      "options": [
+        "ปลายทศวรรษ 1960 (Late 1960s)",
+        "ต้นทศวรรษ 1950 (Early 1950s)",
+        "ต้นทศวรรษ 2010 (Early 2010s)",
+        "กลางทศวรรษ 1990 (Middle 1990s)"
+      ],
+      "answer": 0,
+      "explanation": "สไลด์หน้า 20 จัด Structured programming, free format lexical, Top-down design และ step-wise refinement ไว้ในยุค Late 1960s"
+    },
+    {
+      "question": "ในช่วงปลายทศวรรษ 1970 (Late 1970s) วิธีการออกแบบโปรแกรมเปลี่ยนจาก Process-oriented ไปสู่สิ่งใด?",
+      "options": [
+        "AI-oriented (การใช้โมเดลโครงข่ายประสาทเทียม)",
+        "Data-oriented (การเน้นโครงสร้างและการนามธรรมข้อมูล หรือ Data abstraction)",
+        "Web-oriented (การเขียนเว็บแอปพลิเคชัน)",
+        "Machine-oriented (การเขียนภาษาเครื่องโดยตรง)"
       ],
       "answer": 1,
-      "explanation": "DLL เป็นไฟล์ Library ที่โหลดเข้ามาในหน่วยความจำตอนรันไทม์ ทำให้หลายโปรแกรมสามารถใช้ฟังก์ชันเดียวกันร่วมกันได้ ช่วยประหยัดพื้นที่"
+      "explanation": "สไลด์หน้า 20 ระบุว่า Late 1970s: process-oriented to data-oriented (Data abstraction)"
+    },
+    {
+      "question": "คุณลักษณะสำคัญ 3 ประการของ Object-Oriented Programming (OOP) ที่แพร่หลายในยุคกลาง 1980s คือข้อใด?",
+      "options": [
+        "Machine code + Assembly + High-level language",
+        "Input + Calculations + Output",
+        "Pointers + Arrays + Functions",
+        "Data abstraction + Inheritance + Dynamic binding"
+      ],
+      "answer": 3,
+      "explanation": "สไลด์หน้า 20 ระบุว่า Middle 1980s: object-oriented programming คือ 'Data abstraction + inheritance + dynamic binding'"
+    },
+    {
+      "question": "การนำภาษาโปรแกรมไปทำให้ใช้งานได้จริง (Implementation of a PL construct) มีความหมายตรงกับข้อใด?",
+      "options": [
+        "การซื้อลิขสิทธิ์ซอฟต์แวร์ภาษามาติดตั้งบนเครื่องคอมพิวเตอร์",
+        "การออกแบบฟอนต์ตัวอักษรสำหรับพิมพ์โค้ดในโปรแกรมแก้ไขข้อความ",
+        "การแปลง/แมปโครงสร้างของภาษาขั้นสูงให้อยู่ในรูปภาษาระดับต่ำกว่า เช่น Assembly หรือภาษาเครื่อง",
+        "การเขียนคู่มือการใช้งานภาษาให้ผู้ใช้ทั่วไปอ่านเข้าใจได้"
+      ],
+      "answer": 2,
+      "explanation": "สไลด์หน้า 24 ระบุว่า Implementation of a PL construct means its realization in a lower-level language, e.g. assembly -> mapping/translation from a high-level language to a low-level language"
+    },
+    {
+      "question": "ขั้นตอนแรกของ Compiler คือ Lexical Analysis (Scanner) ทำหน้าที่อะไร?",
+      "options": [
+        "จำลองการรันโปรแกรมเพื่อตรวจสอบผลลัพธ์แบบเรียลไทม์",
+        "นำไลบรารีภายนอกมาเชื่อมโยงเข้ากับโปรแกรมหลัก (Link and Load)",
+        "แปลงโค้ดให้กลายเป็นไฟล์ภาษาเครื่อง (.exe) ทันที",
+        "แปลงตัวอักษรในซอร์สโค้ด (Source Program) ให้เป็นกลุ่มคำหรือหน่วยคำ (Lexical units / Tokens)"
+      ],
+      "answer": 3,
+      "explanation": "สไลด์หน้า 25 ระบุว่า 'Lexical analysis: converts characters in the source program into lexical units'"
+    },
+    {
+      "question": "ขั้นตอน Syntax Analysis (Parser) ในกระบวนการคอมไพล์ ทำหน้าที่อะไร?",
+      "options": [
+        "แปลง Lexical units ให้อยู่ในรูป Parse Tree ที่สะท้อนโครงสร้างไวยากรณ์ของโปรแกรม",
+        "แปลงตัวอักษรทีละตัวเป็นรหัส ASCII",
+        "คำนวณผลลัพธ์ทางคณิตศาสตร์ทั้งหมดในโปรแกรมล่วงหน้า",
+        "นำโปรแกรมไปติดตั้งลงในหน่วยความจำ RAM ของเครื่อง"
+      ],
+      "answer": 0,
+      "explanation": "สไลด์หน้า 25 ระบุว่า 'Syntax analysis: transforms lexical units into parse trees which represent syntactic structure of program'"
+    },
+    {
+      "question": "ขั้นตอน Semantics Analysis และ Code Generation ในกระบวนการคอมไพล์ ทำหน้าที่อะไรตามลำดับ?",
+      "options": [
+        "ตรวจสอบความหมายพร้อมสร้าง Intermediate code และแปลงให้เป็น Machine code (ภาษาเครื่อง)",
+        "จัดเก็บตัวแปรลงใน Harddisk และลบโค้ดที่ไม่ใช้ออก",
+        "แปลงภาษาเครื่องกลับไปเป็นภาษาแอสเซมบลี",
+        "แปลงเป็น Bytecode แล้วรันบน JVM โดยตรง"
+      ],
+      "answer": 0,
+      "explanation": "สไลด์หน้า 25: Semantics analysis ทำหน้าที่ generate intermediate code และ Code generation ทำหน้าที่ generate machine code"
+    },
+    {
+      "question": "ข้อใดอธิบายความแตกต่างระหว่าง Syntax และ Semantics ได้ถูกต้องที่สุด?",
+      "options": [
+        "Syntax คือกฎเกณฑ์และโครงสร้างทางไวยากรณ์ ส่วน Semantics คือความหมายหรือการทำงานจริงของประโยคคำสั่ง",
+        "Syntax คือความหมายของโปรแกรม ส่วน Semantics คือรูปแบบการสะกดคำ",
+        "Syntax ใช้เฉพาะในภาษาแปลด้วย Compiler ส่วน Semantics ใช้เฉพาะกับ Interpreter",
+        "Syntax คือความเร็วของโปรแกรม ส่วน Semantics คือขนาดไฟล์ของโปรแกรม"
+      ],
+      "answer": 0,
+      "explanation": "Syntax หมายถึง รูปแบบและกฎเกณฑ์ทางไวยากรณ์ (Grammar/Form) ส่วน Semantics หมายถึง ความหมายหรือพฤติกรรมการทำงาน (Meaning/Behavior) ของคำสั่ง"
+    },
+    {
+      "question": "จากตัวอย่างเปรียบเทียบในสไลด์ ประโยค 'กิน ข้าว คน' ถือเป็นข้อผิดพลาดประเภทใด เพราะเหตุใด?",
+      "options": [
+        "Semantic error เพราะคำว่า กิน ไม่มีความหมายในพจนานุกรม",
+        "Logical error เพราะประโยคมีความยาวสั้นเกินไป",
+        "Run-time error เพราะประโยคนี้ทำงานแล้วทำให้ระบบหยุดทำงานทันที",
+        "Syntax error เพราะเรียงลำดับโครงสร้างประโยคผิดไวยากรณ์ (กริยา กรรม ประธาน)"
+      ],
+      "answer": 3,
+      "explanation": "สไลด์หน้า 26 ยกตัวอย่าง 'กิน ข้าว คน' ว่าเป็น syntax error เพราะผิดโครงสร้างไวยากรณ์ ในขณะที่ 'ข้าว กิน คน' ไวยากรณ์ถูก (ประธาน กริยา กรรม) แต่ผิดความหมาย จึงเป็น semantic error"
+    },
+    {
+      "question": "จากตัวอย่างโค้ด: int x = 100; int y = x + u; (โดยที่ u ไม่เคยถูกประกาศหรือกำหนดค่ามาก่อน) จัดเป็นข้อผิดพลาดประเภทใด?",
+      "options": [
+        "Hardware error เพราะหน่วยความจำไม่รองรับตัวแปร x",
+        "Linker error เพราะไม่มีการโหลดไลบรารี math.h",
+        "Semantic error เพราะโครงสร้างไวยากรณ์ถูกต้อง แต่ตัวแปร u ไม่ถูกนิยามความหมายไว้ (u undefined)",
+        "Syntax error เพราะในภาษา C ห้ามนำตัวแปรมาบวกกัน"
+      ],
+      "answer": 2,
+      "explanation": "สไลด์หน้า 27 ระบุว่า int x = 100; int y = x + u; มีโครงสร้าง syntax ที่ถูกต้อง (Valid Syntax) แต่เกิด Invalid semantics เพราะตัวแปร u ไม่ได้ถูกนิยาม (u undefined)"
+    },
+    {
+      "question": "หลักการทำงานของตัวแปลภาษาแบบ Interpreter ทำงานอย่างไร?",
+      "options": [
+        "ตรวจสอบเฉพาะข้อผิดพลาดทางไวยากรณ์แล้วหยุดทำงานทันที",
+        "ทำหน้าที่เป็นตัวจำลอง (Simulator หรือ Virtual machine) อ่านและสั่งประมวลผลโค้ดทีละคำสั่งโดยไม่ต้องแปลเป็นไฟล์ภาษาเครื่องล่วงหน้า",
+        "แปลซอร์สโค้ดทั้งหมดเป็นไฟล์ Executable (.exe) เพียงครั้งเดียวแล้วบันทึกลงดิสก์",
+        "ส่งคำสั่งตรงไปยัง BIOS ของเมนบอร์ดโดยไม่ผ่าน CPU"
+      ],
+      "answer": 1,
+      "explanation": "สไลด์หน้า 29 ระบุว่า 'Program interpreted by another program (interpreter) without translation' และ 'Interpreter acts as a simulator or virtual machine'"
+    },
+    {
+      "question": "ข้อใดคือข้อดีสำคัญของ Interpreter เมื่อเปรียบเทียบกับ Compiler?",
+      "options": [
+        "ทำให้โปรแกรมทำงานได้เร็วกว่าคอมไพเลอร์ 10 ถึง 100 เท่า",
+        "สร้างไฟล์ภาษาเครื่องที่มีความปลอดภัยจากการถูกแฮกสูงกว่า",
+        "สามารถตรวจจับและแสดง Run-time errors ได้ทันที ทำให้พัฒนาและดีบั๊กโปรแกรมได้ง่าย",
+        "ใช้พื้นที่หน่วยความจำน้อยกว่าคอมไพเลอร์มาก"
+      ],
+      "answer": 2,
+      "explanation": "สไลด์หน้า 29 ระบุข้อดีของ Interpreter: 'Easier implementation of programs (run-time errors can easily and immediately displayed)'"
+    },
+    {
+      "question": "ข้อใดคือข้อจำกัดหรือข้อเสียสำคัญของระบบที่ใช้ Pure Interpretation?",
+      "options": [
+        "เขียนคำสั่งแบบเงื่อนไขหรือการวนลูปไม่ได้",
+        "ไม่สามารถแสดงตำแหน่งบรรทัดที่เกิดข้อผิดพลาดได้",
+        "ไม่สามารถรันบนระบบปฏิบัติการที่หลากหลายได้",
+        "ประมวลผลได้ช้ากว่าโปรแกรมที่คอมไพล์แล้วประมาณ 10 ถึง 100 เท่า และมักใช้พื้นที่หน่วยความจำมากกว่า"
+      ],
+      "answer": 3,
+      "explanation": "สไลด์หน้า 29 ระบุข้อเสียของ Pure Interpretation ว่า: 'Slower execution (10 to 100 times slower than compiled programs)' และ 'Often requires more space'"
+    },
+    {
+      "question": "ระบบแบบ Hybrid Implementation System (เช่น ภาษา Java) มีกระบวนการทำงานอย่างไร?",
+      "options": [
+        "ใช้ Compiler 2 ตัวประมวลผลพร้อมกันเพื่อให้ได้ความเร็วสองเท่า",
+        "รันโปรแกรมบนคลาวด์และเครื่องผู้ใช้พร้อมกัน",
+        "แปลซอร์สโค้ดระดับสูงให้อยู่ในรูปภาษากลาง (Intermediate Language เช่น Bytecode) ก่อน แล้วจึงรันด้วย Interpreter",
+        "เขียนโค้ดด้วยภาษา C สลับกับภาษา Assembly ในไฟล์เดียวกัน"
+      ],
+      "answer": 2,
+      "explanation": "สไลด์หน้า 30 ระบุว่า 'A high-level language program is translated to an intermediate language that allows easy interpretation (Faster than pure interpretation)' เช่น Java Bytecode บน JVM"
+    },
+    {
+      "question": "เกณฑ์สำคัญ 4 ประการที่ใช้ในการประเมินภาษาโปรแกรม (Language Evaluation Criteria) ตามสไลด์หน้าสรุปคือข้อใด?",
+      "options": [
+        "Frontend, Backend, Database, Cloud",
+        "Speed, Size, Color, Graphics",
+        "Readability, Writability, Reliability, Cost",
+        "Memory, CPU, Harddisk, Network"
+      ],
+      "answer": 2,
+      "explanation": "สไลด์หน้า 31 ระบุชัดเจนว่า 'Most important criteria for evaluating programming languages include: Readability, writability, reliability, cost'"
+    },
+    {
+      "question": "ปัจจัยหลัก 3 ประการที่มีอิทธิพลต่อการออกแบบภาษาโปรแกรม (Major influences on language design) คือข้อใด?",
+      "options": [
+        "Application domains, Machine architecture, Software development methodologies",
+        "Internet speed, Screen resolution, Keyboard layout",
+        "Operating system, Power supply, Cooling fan",
+        "Programming competition, Marketing budget, Brand name"
+      ],
+      "answer": 0,
+      "explanation": "สไลด์หน้า 31 ระบุว่า 'Major influences on language design have been application domains, machine architecture and software development methodologies'"
     }
   ],
   "5": [
