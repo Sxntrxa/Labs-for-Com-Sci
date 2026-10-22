@@ -69,7 +69,7 @@
                 let cmd = line.toLowerCase();
                 
                 if (cmd === 'do') stack.push({ type: 'Do', line: i });
-                else if (cmd === 'loop' || cmd.startsWith('loop ') || cmd.startsWith('loop	')) {
+                else if (cmd === 'loop' || /^loop[\s\t(]/i.test(cmd)) {
                     let doNode = stack.pop();
                     if (doNode) {
                         jumps[i] = doNode.line;
@@ -119,6 +119,10 @@
                 let lowerLine = line.toLowerCase();
                 let indentMatch = originalLine.match(/^(\s*)/);
                 let indent = indentMatch ? indentMatch[1] : "";
+                
+                // Auto-insert space before parenthesis for keywords e.g. while(x < 5) -> while (x < 5)
+                line = line.replace(/^(if|while|until|loop|do while|do until|for|output|input)\s*\(/i, "$1 (");
+                lowerLine = line.toLowerCase();
                 
                 // 1. Array Declarations
                 if (lowerLine.startsWith('declare ')) {
@@ -347,7 +351,7 @@
                     else if (cmd === 'end if') pc++;
                     
                     else if (cmd === 'do') pc++;
-                    else if (cmd === 'loop' || cmd.startsWith('loop ') || cmd.startsWith('loop	')) {
+                    else if (cmd === 'loop' || /^loop[\s\t(]/i.test(cmd)) {
                         let condStr = line.replace(/^\s*loop\s*/i, '').trim();
                         if (condStr.toLowerCase().startsWith('while ')) {
                             condStr = condStr.substring(6).trim();
@@ -356,7 +360,7 @@
                         }
                         
                         if (condStr === '') {
-                            pc = jumps[pc];
+                            throw new Error("คำสั่ง Loop ต้องระบุเงื่อนไขต่อท้าย เช่น 'Loop x > 0'");
                         } else {
                             if (evaluateExpression(condStr, memory, true)) pc = jumps[pc]; 
                             else pc++; 

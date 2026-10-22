@@ -415,9 +415,13 @@ End`;
                 const inputEl = document.getElementById('console-input');
                 const btn = document.getElementById('console-submit');
                 
+                let targetVar = (promptMsg || '').trim();
+                print(`📥 รอการป้อนค่า${targetVar ? 'สำหรับ ' + targetVar : ''}... (กรอกที่ช่องด้านล่าง)`, "sys");
+                
                 bar.classList.remove('opacity-50', 'pointer-events-none');
                 inputEl.disabled = false;
                 inputEl.value = "";
+                inputEl.placeholder = targetVar ? `ป้อนค่าสำหรับ ${targetVar} แล้วกด Enter...` : "ป้อนค่าแล้วกด Enter...";
                 inputEl.focus();
                 
                 function submit() {
@@ -454,7 +458,7 @@ End`;
             for (let i = 0; i < parts.length; i++) {
                 if (i % 2 === 0) {
                     // ส่วนที่เป็นโค้ด (ไม่ใช่ข้อความ)
-                    parts[i] = parts[i].replace(/&/g, '+'); 
+                    parts[i] = parts[i].replace(/&/g, '+').replace(/\b[mM][oO][dD]\b/g, '%').replace(/\^/g, '**'); 
                     
                     if (isCondition) {
                         parts[i] = parts[i].replace(/\b[oO][rR]\b/g, '||')
@@ -492,7 +496,7 @@ End`;
                 let cmd = line.toLowerCase();
                 
                 if (cmd === 'do') stack.push({ type: 'Do', line: i });
-                else if (cmd === 'loop' || cmd.startsWith('loop ') || cmd.startsWith('loop	')) {
+                else if (cmd === 'loop' || /^loop[\s\t(]/i.test(cmd)) {
                     let doNode = stack.pop();
                     if (doNode) {
                         jumps[i] = doNode.line;
@@ -565,6 +569,10 @@ End`;
                 let lowerLine = line.toLowerCase();
                 let indentMatch = originalLine.match(/^(\s*)/);
                 let indent = indentMatch ? indentMatch[1] : "";
+                
+                // Auto-insert space before parenthesis for keywords e.g. while(x < 5) -> while (x < 5)
+                line = line.replace(/^(if|while|until|loop|do while|do until|for|output|input)\s*\(/i, "$1 (");
+                lowerLine = line.toLowerCase();
                 
                 // 1. Array Declarations
                 if (lowerLine.startsWith('declare ')) {
@@ -827,7 +835,7 @@ End`;
                     else if (cmd === 'end if') pc++;
                     
                     else if (cmd === 'do') pc++;
-                    else if (cmd === 'loop' || cmd.startsWith('loop ') || cmd.startsWith('loop	')) {
+                    else if (cmd === 'loop' || /^loop[\s\t(]/i.test(cmd)) {
                         let condStr = line.replace(/^\s*loop\s*/i, '').trim();
                         if (condStr.toLowerCase().startsWith('while ')) {
                             condStr = condStr.substring(6).trim();
@@ -836,7 +844,7 @@ End`;
                         }
                         
                         if (condStr === '') {
-                            pc = jumps[pc];
+                            throw new Error("คำสั่ง Loop ต้องระบุเงื่อนไขต่อท้าย เช่น 'Loop x > 0'");
                         } else {
                             if (evaluateExpression(condStr, memory, true)) pc = jumps[pc]; 
                             else pc++; 
