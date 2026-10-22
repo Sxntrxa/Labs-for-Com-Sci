@@ -6,8 +6,12 @@
             outputDiv.scrollTop = outputDiv.scrollHeight;
         }
 
-        function requestInput(promptMsg) {
+        let currentExecutionId = 0;
+
+        function requestInput(promptMsg, varType = '', execId = currentExecutionId) {
             return new Promise((resolve) => {
+                if (execId !== currentExecutionId) return;
+
                 const id = "input-" + Date.now();
                 outputDiv.innerHTML += `
                     <div class="input-line" id="container-${id}">
@@ -16,25 +20,61 @@
                     </div>`;
                 outputDiv.scrollTop = outputDiv.scrollHeight;
                 const inputEl = document.getElementById(id);
+                if (!inputEl) return;
                 inputEl.focus();
-                
-                inputEl.addEventListener('keyup', function(e) {
+
+                let submitted = false;
+
+                async function submit() {
+                    if (submitted) return;
+                    if (execId !== currentExecutionId) return;
+
+                    let val = inputEl.value;
+                    let trimmed = val.trim();
+
+                    if (varType === 'Integer' || varType === 'Real') {
+                        if (trimmed === '' || isNaN(Number(trimmed))) {
+                            inputEl.style.borderColor = '#ff4444';
+                            return;
+                        }
+                    }
+
+                    submitted = true;
+                    inputEl.disabled = true;
+                    const container = document.getElementById(`container-${id}`);
+                    if (container) container.innerHTML = `<span style="color: #ffaa00;">> ${val}</span>`;
+
+                    await new Promise(r => setTimeout(r, 60));
+                    if (execId !== currentExecutionId) return;
+                    resolve(val);
+                }
+
+                inputEl.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter') {
-                        let val = inputEl.value;
-                        document.getElementById(`container-${id}`).innerHTML = `<span style="color: #ffaa00;">> ${val}</span>`;
-                        resolve(val);
+                        e.preventDefault();
+                        if (e.repeat) return;
+                        submit();
                     }
                 });
             });
         }
 
         function castValue(val, type) {
-            if (type === 'Integer') return Math.floor(Number(val)) || 0;
-            if (type === 'Real') return Number(val) || 0.0;
+            if (type === 'Integer') {
+                let n = Math.floor(Number(val));
+                return isNaN(n) ? 0 : n;
+            }
+            if (type === 'Real') {
+                let n = Number(val);
+                return isNaN(n) ? 0.0 : n;
+            }
+            if (type === 'Boolean') {
+                let s = String(val).trim().toLowerCase();
+                return s === 'true' || s === '1' || s === 'yes';
+            }
             if (type === 'String') return String(val);
             return val;
         }
-
         function evaluateExpression(expr, memory, isCondition = false) {
             let parsed = expr.replace(/(?=(?:(?:[^']*'){2})*[^']*$)&/g, '+'); 
             
@@ -250,6 +290,7 @@
         }
 
         async function executeProgram() {
+            const execId = ++currentExecutionId;
             const rawCode = document.getElementById('code').value;
             const codeLines = preprocessTeacherSyntax(rawCode).split('\n');
             outputDiv.innerHTML = '<div class="sys-msg">Starting execution...<br>------------------------</div>';
@@ -258,11 +299,21 @@
             let jumps = {};
             
             try { jumps = buildJumps(codeLines); } 
-            catch (e) { print(`❌ Compiler Error: ${e.message}`, "error"); return; }
+            catch (e) { 
+                if (execId === currentExecutionId) print(`❌ Compiler Error: ${e.message}`, "error"); 
+                return; 
+            }
 
             let pc = 0; 
+            let safetyCounter = 0;
 
             while (pc < codeLines.length) {
+                if (execId !== currentExecutionId) return;
+                safetyCounter++;
+                if (safetyCounter > 100000) {
+                    print("🛑 ข้อผิดพลาด: ตรวจพบการทำงานวนซ้ำไม่รู้จบ (Infinite Loop)", "error");
+                    break;
+                }
                 if (pc === undefined || isNaN(pc)) {
                     print(`❌ Runtime Error: โปรแกรมหลุดออกจากโครงสร้าง`, "error");
                     break;
@@ -307,7 +358,8 @@
                         if (!match) throw new Error("รูปแบบ Input ไม่ถูกต้อง");
                         let name = match[1], dim1Expr = match[2], dim2Expr = match[3];
                         
-                        let rawInput = await requestInput(line.substring(6));
+                        let rawInput = await requestInput(line.substring(6), memory[name].type, execId);
+                        if (execId !== currentExecutionId) return;
                         let castedVal = castValue(rawInput, memory[name].type);
 
                         if (dim1Expr && dim2Expr) {
@@ -401,6 +453,8 @@
                     break; 
                 }
             }
-            print('<div class="sys-msg">------------------------<br>Execution finished</div>');
+            if (execId === currentExecutionId) {
+                print('<div class="sys-msg">------------------------<br>Execution finished</div>');
+            }
         }
     

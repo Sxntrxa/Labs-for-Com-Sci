@@ -517,11 +517,16 @@ End`;
             outputDiv.scrollTop = outputDiv.scrollHeight;
         }
 
-        function requestInput(promptMsg) {
+        let currentExecutionId = 0;
+
+        function requestInput(promptMsg, varType = '', execId = currentExecutionId) {
             return new Promise((resolve) => {
+                if (execId !== currentExecutionId) return;
+
                 const bar = document.getElementById('input-bar');
                 const inputEl = document.getElementById('console-input');
                 const btn = document.getElementById('console-submit');
+                if (!inputEl || !btn) return;
                 
                 let targetVar = (promptMsg || '').trim();
                 print(`📥 รอการป้อนค่า${targetVar ? 'สำหรับ ' + targetVar : ''}... (กรอกที่ช่องด้านล่าง)`, "sys");
@@ -530,34 +535,88 @@ End`;
                 inputEl.disabled = false;
                 inputEl.value = "";
                 inputEl.placeholder = targetVar ? `ป้อนค่าสำหรับ ${targetVar} แล้วกด Enter...` : "ป้อนค่าแล้วกด Enter...";
-                inputEl.focus();
+                setTimeout(() => {
+                    if (execId === currentExecutionId && !inputEl.disabled) {
+                        inputEl.focus();
+                    }
+                }, 50);
                 
-                function submit() {
+                let submitted = false;
+
+                async function submit() {
+                    if (submitted) return;
+                    if (execId !== currentExecutionId) return;
+
                     let val = inputEl.value;
-                    bar.classList.add('opacity-50', 'pointer-events-none');
-                    inputEl.disabled = true;
-                    inputEl.removeEventListener('keyup', keyHandler);
-                    btn.removeEventListener('click', submit);
+                    let trimmed = val.trim();
+
+                    // Block empty or invalid non-number submissions for numeric variables
+                    if (varType === 'Integer' || varType === 'Real') {
+                        if (trimmed === '') {
+                            inputEl.classList.add('!border-rose-500', 'animate-pulse');
+                            inputEl.placeholder = `⚠️ กรุณาป้อนตัวเลขสำหรับ ${targetVar || 'ตัวแปร'} ก่อนกด Enter`;
+                            setTimeout(() => {
+                                inputEl.classList.remove('!border-rose-500', 'animate-pulse');
+                            }, 1200);
+                            return;
+                        }
+                        if (isNaN(Number(trimmed))) {
+                            inputEl.classList.add('!border-rose-500', 'animate-pulse');
+                            inputEl.value = '';
+                            inputEl.placeholder = `⚠️ '${trimmed}' ไม่ใช่ตัวเลข กรุณากรอกใหม่`;
+                            setTimeout(() => {
+                                inputEl.classList.remove('!border-rose-500', 'animate-pulse');
+                            }, 1500);
+                            return;
+                        }
+                    }
+
+                    submitted = true;
+                    cleanup();
                     print(val, "input");
+
+                    // Brief cooldown so physical Enter key release has finished before next prompt
+                    await new Promise(r => setTimeout(r, 60));
+                    if (execId !== currentExecutionId) return;
                     resolve(val);
                 }
                 
                 function keyHandler(e) {
-                    if (e.key === 'Enter') submit();
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        if (e.repeat) return; // Prevent repeated triggers while key is held down
+                        submit();
+                    }
+                }
+
+                function cleanup() {
+                    bar.classList.add('opacity-50', 'pointer-events-none');
+                    inputEl.disabled = true;
+                    inputEl.removeEventListener('keydown', keyHandler);
+                    btn.removeEventListener('click', submit);
                 }
                 
-                inputEl.addEventListener('keyup', keyHandler);
+                inputEl.addEventListener('keydown', keyHandler);
                 btn.addEventListener('click', submit);
             });
         }
 
         function castValue(val, type) {
-            if (type === 'Integer') return Math.floor(Number(val)) || 0;
-            if (type === 'Real') return Number(val) || 0.0;
+            if (type === 'Integer') {
+                let n = Math.floor(Number(val));
+                return isNaN(n) ? 0 : n;
+            }
+            if (type === 'Real') {
+                let n = Number(val);
+                return isNaN(n) ? 0.0 : n;
+            }
+            if (type === 'Boolean') {
+                let s = String(val).trim().toLowerCase();
+                return s === 'true' || s === '1' || s === 'yes';
+            }
             if (type === 'String') return String(val);
             return val;
         }
-
         function evaluateExpression(expr, memory, isCondition = false) {
             let keys = Object.keys(memory).filter(k => k !== '__for');
             
@@ -808,6 +867,7 @@ End`;
         }
 
         async function executeProgram() {
+            const execId = ++currentExecutionId;
             const rawCode = document.getElementById('code').value;
             const codeLines = preprocessTeacherSyntax(rawCode).split('\n');
             outputDiv.innerHTML = '<div class="text-center text-xs text-slate-400 my-2">เริ่มการทำงาน...</div>';
@@ -816,22 +876,42 @@ End`;
             document.querySelectorAll('[id^="line-"]').forEach(el => {
                 el.classList.remove('!bg-red-500/30', '!border-red-500', 'animate-pulse');
             });
+
+            // Reset input bar & cleanly detach all listeners from any previous runs
+            const bar = document.getElementById('input-bar');
+            const inputEl = document.getElementById('console-input');
+            const btn = document.getElementById('console-submit');
+            if (bar) bar.classList.add('opacity-50', 'pointer-events-none');
+            if (inputEl) {
+                inputEl.disabled = true;
+                inputEl.value = '';
+                const cleanInputEl = inputEl.cloneNode(true);
+                inputEl.parentNode.replaceChild(cleanInputEl, inputEl);
+            }
+            if (btn) {
+                const cleanBtn = btn.cloneNode(true);
+                btn.parentNode.replaceChild(cleanBtn, btn);
+            }
             
             let memory = { __for: {} }; 
             let jumps = {};
             
             try { jumps = buildJumps(codeLines); } 
-            catch (e) { print(`Compiler Error: ${e.message}`, "error"); return; }
+            catch (e) { 
+                if (execId === currentExecutionId) print(`Compiler Error: ${e.message}`, "error"); 
+                return; 
+            }
 
             let pc = 0; 
 
             let safetyCounter = 0;
-        while (pc < codeLines.length) {
-            safetyCounter++;
-            if (safetyCounter > 100000) {
-                print("🛑 ข้อผิดพลาด: ตรวจพบการทำงานวนซ้ำไม่รู้จบ (Infinite Loop)", "error");
-                break;
-            }
+            while (pc < codeLines.length) {
+                if (execId !== currentExecutionId) return;
+                safetyCounter++;
+                if (safetyCounter > 100000) {
+                    print("🛑 ข้อผิดพลาด: ตรวจพบการทำงานวนซ้ำไม่รู้จบ (Infinite Loop)", "error");
+                    break;
+                }
                 if (pc === undefined || isNaN(pc)) {
                     print(`Runtime Error: โปรแกรมหลุดออกจากโครงสร้าง`, "error");
                     break;
@@ -897,7 +977,8 @@ End`;
                         if (!realName) throw new Error(`ไม่พบตัวแปรชื่อ '${name}' (ต้อง Declare ก่อน)`);
                         name = realName;
                         
-                        let rawInput = await requestInput(line.substring(6));
+                        let rawInput = await requestInput(line.substring(6), memory[name].type, execId);
+                        if (execId !== currentExecutionId) return;
                         let castedVal = castValue(rawInput, memory[name].type);
 
                         if (dim1Expr && dim2Expr) {
@@ -1008,7 +1089,9 @@ End`;
                     break; 
                 }
             }
-            print('จบการทำงาน', 'sys');
+            if (execId === currentExecutionId) {
+                print('จบการทำงาน', 'sys');
+            }
         }
     
 
