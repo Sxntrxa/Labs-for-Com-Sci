@@ -69,9 +69,12 @@
                 let cmd = line.toLowerCase();
                 
                 if (cmd === 'do') stack.push({ type: 'Do', line: i });
-                else if (cmd.startsWith('loop ')) {
+                else if (cmd === 'loop' || cmd.startsWith('loop ') || cmd.startsWith('loop	')) {
                     let doNode = stack.pop();
-                    if (doNode) jumps[i] = doNode.line;
+                    if (doNode) {
+                        jumps[i] = doNode.line;
+                        jumps[doNode.line] = i;
+                    }
                 } 
                 else if (cmd.startsWith('while ')) stack.push({ type: 'While', line: i });
                 else if (cmd === 'end while') {
@@ -105,7 +108,8 @@
 
         
         function preprocessTeacherSyntax(code) {
-            let lines = code.split('\n');
+            let lines = code.split('
+');
             let blockStack = [];
             
             for (let i = 0; i < lines.length; i++) {
@@ -117,53 +121,112 @@
                 let indentMatch = originalLine.match(/^(\s*)/);
                 let indent = indentMatch ? indentMatch[1] : "";
                 
-                // 1. Array Declarations: Declare Integer Array A[10, 10] -> Declare Integer A[10][10]
+                // 1. Array Declarations
                 if (lowerLine.startsWith('declare ')) {
-                    line = line.replace(/Declare\s+(Integer|Real|String|Boolean)\s+Array\s+/i, "Declare $1 ");
+                    line = line.replace(/Declare\s+(Integer|Real|String|Boolean)\s+Array\s+/i, "Declare  ");
                 }
                 
-                // 2. 2D Array accesses: A[i, 0] -> A[i][0]
+                // 2. 2D Array accesses
                 line = line.replace(/\[(.*?)\]/g, (match, inner) => {
                     if (inner.includes(',')) return "[" + inner.split(',').map(s => s.trim()).join('][') + "]";
                     if (inner.includes('，')) return "[" + inner.split('，').map(s => s.trim()).join('][') + "]";
                     return match;
                 });
                 
-                
-                // 2.5 Auto-wrap math operations after string concatenation (e.g., & i+1 -> & (i+1)) to fix teacher's precedence
-                line = line.replace(/&\s*([a-zA-Z_]\w*\s*[\+\-]\s*\d+)/g, "& ($1)");
+                // 2.5 Auto-wrap math operations after string concatenation
+                line = line.replace(/&\s*([a-zA-Z_]\w*\s*[\+\-]\s*\d+)/g, "& ()");
                 
                 // 3. If without Then
-                if (lowerLine.startsWith('if ') && !lowerLine.match(/\bthen$/i)) {
+                if (lowerLine.startsWith('if ') && !lowerLine.match(/then$/i)) {
                     line = line + " Then";
                 }
                 
-                // 4. Block Tracking
+                // 4. Block Tracking & Do/Loop Normalization
+                let curr_top = blockStack.length > 0 ? blockStack[blockStack.length - 1] : null;
+                
                 if (lowerLine.startsWith('if ')) {
                     blockStack.push('if');
                 } else if (lowerLine.startsWith('for ')) {
                     blockStack.push('for');
-                } else if (lowerLine.startsWith('while ')) {
-                    blockStack.push('while');
-                } else if (lowerLine === 'do') {
-                    blockStack.push('do');
-                }
-                // Teacher's Loop...Do
-                else if (lowerLine.startsWith('loop ') && !lowerLine.startsWith('loop while')) {
-                    let rest = line.substring(4).trim();
-                    line = "Do\n" + indent + rest;
-                    blockStack.push('loopdo');
-                } else if (lowerLine === 'loop') {
+                } else if (lowerLine === 'do' || lowerLine === 'repeat') {
                     line = "Do";
-                    blockStack.push('loopdo');
-                }
-                else if (lowerLine.startsWith('do ') && blockStack[blockStack.length - 1] === 'loopdo') {
-                    let rest = line.substring(2).trim();
-                    line = "Loop " + rest;
-                    blockStack.pop();
-                }
-                // 5. Universal 'End'
-                else if (lowerLine === 'end') {
+                    blockStack.push('do');
+                } else if (lowerLine.startsWith('do while ')) {
+                    let cond = line.substring(line.toLowerCase().indexOf('while') + 5).trim();
+                    if (curr_top === 'do' || curr_top === 'loopdo') {
+                        line = "Loop " + cond;
+                        blockStack.pop();
+                    } else {
+                        line = "While " + cond;
+                        blockStack.push('while');
+                    }
+                } else if (lowerLine.startsWith('do until ')) {
+                    let cond = line.substring(line.toLowerCase().indexOf('until') + 5).trim();
+                    if (curr_top === 'do' || curr_top === 'loopdo') {
+                        line = "Loop !(" + cond + ")";
+                        blockStack.pop();
+                    } else {
+                        line = "While !(" + cond + ")";
+                        blockStack.push('while');
+                    }
+                } else if (lowerLine.startsWith('do ')) {
+                    let rest = line.substring(line.toLowerCase().indexOf('do') + 2).trim();
+                    if (rest.toLowerCase().startsWith('while ')) rest = rest.substring(6).trim();
+                    else if (rest.toLowerCase().startsWith('until ')) rest = "!(" + rest.substring(6).trim() + ")";
+                    if (curr_top === 'loopdo' || curr_top === 'do') {
+                        line = "Loop " + rest;
+                        blockStack.pop();
+                    } else {
+                        line = "Do
+" + indent + rest;
+                        blockStack.push('do');
+                    }
+                } else if (lowerLine === 'loop') {
+                    if (curr_top === 'do') {
+                        line = "Loop";
+                        blockStack.pop();
+                    } else if (curr_top === 'while') {
+                        line = "End While";
+                        blockStack.pop();
+                    } else {
+                        line = "Do";
+                        blockStack.push('loopdo');
+                    }
+                } else if (lowerLine.startsWith('loop ')) {
+                    let rest = line.substring(line.toLowerCase().indexOf('loop') + 4).trim();
+                    if (rest.toLowerCase().startsWith('while ')) rest = rest.substring(6).trim();
+                    else if (rest.toLowerCase().startsWith('until ')) rest = "!(" + rest.substring(6).trim() + ")";
+                    if (curr_top === 'do') {
+                        line = "Loop " + rest;
+                        blockStack.pop();
+                    } else {
+                        line = "Do
+" + indent + rest;
+                        blockStack.push('loopdo');
+                    }
+                } else if (lowerLine.startsWith('while ')) {
+                    let cond = line.substring(line.toLowerCase().indexOf('while') + 5).trim();
+                    if (curr_top === 'do') {
+                        line = "Loop " + cond;
+                        blockStack.pop();
+                    } else {
+                        blockStack.push('while');
+                    }
+                } else if (lowerLine.startsWith('until ')) {
+                    let cond = line.substring(line.toLowerCase().indexOf('until') + 5).trim();
+                    if (curr_top === 'do' || curr_top === 'loopdo') {
+                        line = "Loop !(" + cond + ")";
+                        blockStack.pop();
+                    }
+                } else if (lowerLine === 'end do' || lowerLine === 'end loop') {
+                    if (curr_top === 'do' || curr_top === 'loopdo') {
+                        line = "Loop";
+                        blockStack.pop();
+                    } else if (curr_top === 'while') {
+                        line = "End While";
+                        blockStack.pop();
+                    }
+                } else if (lowerLine === 'end') {
                     if (blockStack.length > 0) {
                         let top = blockStack.pop();
                         if (top === 'if') line = "End If";
@@ -171,16 +234,21 @@
                         else if (top === 'while') line = "End While";
                         else if (top === 'do' || top === 'loopdo') line = "Loop";
                     }
+                } else if (lowerLine === 'end if' && curr_top === 'if') {
+                    blockStack.pop();
+                } else if (lowerLine === 'end for' && curr_top === 'for') {
+                    blockStack.pop();
+                } else if (lowerLine === 'end while' && curr_top === 'while') {
+                    blockStack.pop();
                 }
-                else if (lowerLine === 'end if' && blockStack[blockStack.length - 1] === 'if') blockStack.pop();
-                else if (lowerLine === 'end for' && blockStack[blockStack.length - 1] === 'for') blockStack.pop();
-                else if (lowerLine === 'end while' && blockStack[blockStack.length - 1] === 'while') blockStack.pop();
                 
                 // Handle split lines properly
-                lines[i] = line.split('\n').map((l, idx) => idx === 0 ? indent + l : l).join('\n');
+                lines[i] = line.split('
+').map((l, idx) => idx === 0 ? indent + l : l).join('
+');
             }
-            // Join and re-split to flatten any newly created lines
-            return lines.join('\n');
+            return lines.join('
+');
         }
 
         async function executeProgram() {
@@ -285,9 +353,20 @@
                     else if (cmd === 'end if') pc++;
                     
                     else if (cmd === 'do') pc++;
-                    else if (cmd.startsWith('loop ')) {
-                        if (evaluateExpression(line.substring(5).trim(), memory, true)) pc = jumps[pc]; 
-                        else pc++; 
+                    else if (cmd === 'loop' || cmd.startsWith('loop ') || cmd.startsWith('loop	')) {
+                        let condStr = line.replace(/^\s*loop\s*/i, '').trim();
+                        if (condStr.toLowerCase().startsWith('while ')) {
+                            condStr = condStr.substring(6).trim();
+                        } else if (condStr.toLowerCase().startsWith('until ')) {
+                            condStr = '!(' + condStr.substring(6).trim() + ')';
+                        }
+                        
+                        if (condStr === '') {
+                            pc = jumps[pc];
+                        } else {
+                            if (evaluateExpression(condStr, memory, true)) pc = jumps[pc]; 
+                            else pc++; 
+                        }
                     }
                     else if (cmd.startsWith('while ')) {
                         if (evaluateExpression(line.substring(6).trim(), memory, true)) pc++; 
