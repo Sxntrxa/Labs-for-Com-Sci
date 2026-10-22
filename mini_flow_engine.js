@@ -108,8 +108,7 @@
 
         
         function preprocessTeacherSyntax(code) {
-            let lines = code.split('
-');
+            let lines = code.split('\n');
             let blockStack = [];
             
             for (let i = 0; i < lines.length; i++) {
@@ -123,7 +122,7 @@
                 
                 // 1. Array Declarations
                 if (lowerLine.startsWith('declare ')) {
-                    line = line.replace(/Declare\s+(Integer|Real|String|Boolean)\s+Array\s+/i, "Declare  ");
+                    line = line.replace(/Declare\s+(Integer|Real|String|Boolean)\s+Array\s+/i, "Declare $1 ");
                 }
                 
                 // 2. 2D Array accesses
@@ -134,10 +133,10 @@
                 });
                 
                 // 2.5 Auto-wrap math operations after string concatenation
-                line = line.replace(/&\s*([a-zA-Z_]\w*\s*[\+\-]\s*\d+)/g, "& ()");
+                line = line.replace(/&\s*([a-zA-Z_]\w*\s*[\+\-]\s*\d+)/g, "& ($1)");
                 
                 // 3. If without Then
-                if (lowerLine.startsWith('if ') && !lowerLine.match(/then$/i)) {
+                if (lowerLine.startsWith('if ') && !lowerLine.match(/\bthen$/i)) {
                     line = line + " Then";
                 }
                 
@@ -177,8 +176,7 @@
                         line = "Loop " + rest;
                         blockStack.pop();
                     } else {
-                        line = "Do
-" + indent + rest;
+                        line = "Do\n" + indent + rest;
                         blockStack.push('do');
                     }
                 } else if (lowerLine === 'loop') {
@@ -200,8 +198,7 @@
                         line = "Loop " + rest;
                         blockStack.pop();
                     } else {
-                        line = "Do
-" + indent + rest;
+                        line = "Do\n" + indent + rest;
                         blockStack.push('loopdo');
                     }
                 } else if (lowerLine.startsWith('while ')) {
@@ -243,12 +240,9 @@
                 }
                 
                 // Handle split lines properly
-                lines[i] = line.split('
-').map((l, idx) => idx === 0 ? indent + l : l).join('
-');
+                lines[i] = line.split('\n').map((l, idx) => idx === 0 ? indent + l : l).join('\n');
             }
-            return lines.join('
-');
+            return lines.join('\n');
         }
 
         async function executeProgram() {
